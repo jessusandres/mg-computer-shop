@@ -1,0 +1,105 @@
+[
+  {
+    "id": 1,
+    "name": "Procesadores",
+    "svg": "processors.svg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "AMD",
+        "categoryId": 1
+      },
+      {
+        "id": 2,
+        "name": "INTEL",
+        "categoryId": 1
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "Placa Madre",
+    "svg": "motherboard.svg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "Placas AMD",
+        "categoryId": 2
+      },
+      {
+        "id": 2,
+        "name": "Placas Intel",
+        "categoryId": 2
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Memoria RAM",
+    "svg": "ram.svg",
+    "subCategories": []
+  },
+  {
+    "id": 4,
+    "name": "Almacenamiento",
+    "svg": "storage.svg",
+    "subCategories": []
+  },
+  {
+    "id": 5,
+    "name": "Gabinete",
+    "svg": "case.svg",
+    "subCategories": []
+  },
+  {
+    "id": 6,
+    "name": "Fuente de poder",
+    "svg": "power-supply.svg",
+    "subCategories": []
+  },
+  {
+    "id": 7,
+    "name": "Tarjeta de video",
+    "svg": "graphical-card.svg",
+    "subCategories": []
+  },
+  {
+    "id": 8,
+    "name": "Periféricos",
+    "svg": "peripherals.svg",
+    "subCategories": [
+      {
+        "id": 1,
+        "name": "Teclado",
+        "categoryId": 8
+      },
+      {
+        "id": 2,
+        "name": "Audífonos",
+        "categoryId": 8
+      },
+      {
+        "id": 3,
+        "name": "Mouse Gamer",
+        "categoryId": 8
+      },
+      {
+        "id": 4,
+        "name": "Pad Gamer",
+        "categoryId": 8
+      }
+    ]
+  },
+  {
+    "id": 9,
+    "name": "Monitor",
+    "svg": "monitor.svg",
+    "subCategories": []
+  },
+  {
+    "id": 10,
+    "name": "Enfriamiento",
+    "svg": "cooler.svg",
+    "subCategories": []
+  }
+]

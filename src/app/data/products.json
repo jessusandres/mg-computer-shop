@@ -1,0 +1,168 @@
+[
+  {
+    "id": 1,
+    "name": "CASE HALION STUKA CR11 WHITE, PANEL MESH, X4 FAN RGB",
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-STUKA-CR11-WHITE-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ]
+  },
+  {
+    "id": 2,
+    "name": "CASE MSI MAG VAMPIRIC 100R, PANEL MESH, X2 FAN 12cm",
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "name": "Razer Cobra Ratón Gaming Chroma RGB 8500DPI Negro",
+    "tags": [
+      {
+        "id": 3,
+        "name": "Periféricos"
+      },
+      {
+        "id": 4,
+        "name": "Mouse gamer"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/RAZER-COBRA-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "warehouses": [
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ]
+  },
+  {
+    "id": 4,
+    "name": "ASUS TUF Gaming VG249Q1A 23.8″ IPS FullHD 165Hz FreeSync Premium",
+    "tags": [
+      {
+        "id": 5,
+        "name": "Monitores"
+      },
+      {
+        "id": 6,
+        "name": "Monitor Gaming"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/MO24VG249Q1A-860x860.jpg",
+    "pricePEN": 774.99,
+    "priceUSD": 184.55,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ]
+  },
+  {
+    "id": 5,
+    "name": "CASE HALION TORNADO 04 WHITE, PANEL MESH, X3 FAN ARGB",
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-TORNADO-04-WHITE-860x860.jpg",
+    "pricePEN": 138.99,
+    "priceUSD": 41.92,
+    "warehouses": [
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ]
+  },
+  {
+    "id": 6,
+    "name": "CASE MSI MAG VAMPIRIC 100R, PANEL MESH, X2 FAN 12cm",
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
+    "pricePEN": 222.99,
+    "priceUSD": 33.70,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      }
+    ]
+  }
+]

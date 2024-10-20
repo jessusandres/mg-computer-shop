@@ -1,0 +1,10 @@
+<div>
+  <br>
+  <p *ngIf="isLoading">Products is loading...</p>
+
+  <div *ngIf="!isLoading">
+    CATEGORY : {{categoryId}}
+    <hr>
+    SUB CATEGORY : {{subCategoryId}}
+  </div>
+</div>

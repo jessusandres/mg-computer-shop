@@ -1,0 +1,15 @@
+.navbar-categories {
+  transform: translateY(-2rem);
+  opacity: 0;
+  transition: all 0.250s ease-in-out;
+}
+
+.navbar-categories.show {
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.navbar-categories.hide {
+  transform: translateY(2rem);
+  opacity: 0;
+}

@@ -1,0 +1,14 @@
+<div
+  #sidebarMenu
+  class="fixed inset-y-0 w-64 bg-white border z-[70] lg:!hidden mobile-menu {{showSidebarMenu ? 'show' : ''}}"
+>
+  <nav>
+    <ul
+      class="flex flex-col [&>li>a]:flex [&>li>a]:items-center [&>li>a]:px-[18px] [&>li>a]:py-3.5 [&>li>a]:gap-2 [&>li>a]:font-semibold [&>li>a]:text-sm [&>li>hover]:bg-gray-50 uppercase [&>li>a]:relative divide-y *:relative text-[#333]">
+      <app-sidebar-menu-item
+        *ngFor="let category of categories"
+        [category]="category"
+      />
+    </ul>
+  </nav>
+</div>

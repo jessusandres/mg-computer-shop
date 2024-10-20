@@ -1,0 +1,21 @@
+.mobile-item {
+  @starting-style {
+    opacity: 0;
+    display: none;
+    transform: translateY(-2.5rem);
+  }
+
+  transition-property: display, opacity, transform;
+  transition-duration: .150s;
+  transition-behavior: allow-discrete;
+}
+
+.mobile-item.show {
+  display: block;
+  opacity: 1;
+}
+
+.mobile-item.hide {
+  display: none;
+  opacity: 0;
+}

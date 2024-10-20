@@ -32,8 +32,12 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/global.css"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": ["node_modules/"]
+            },
             "scripts": []
           },
           "configurations": {
@@ -91,12 +95,16 @@
               }
             ],
             "styles": [
-              "src/styles.scss"
+              "src/styles.scss",
+              "src/global.css"
             ],
             "scripts": []
           }
         }
       }
     }
+  },
+  "cli": {
+    "analytics": "edb683a1-0919-4739-b2db-4db22416f831"
   }
 }
