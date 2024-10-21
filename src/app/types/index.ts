@@ -3,3 +3,4 @@ export { type SvgProps } from './svg-props.type';
 export type { TSubCategory, TCategory } from './categories.type';
 export type { TProduct } from './product.type';
 export type { TMenu } from './menu.type';
+export type { TCurrency } from './currency.type';

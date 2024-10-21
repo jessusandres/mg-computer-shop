@@ -18,37 +18,37 @@
           placeholder="Buscar productos..."
         />
         <div #menu>
-<!--          <div>-->
-            <button
-              type="button"
-              class="absolute inset-y-0 right-[45px] h-full px-4 bg-white border border-gray-200 text-[13px] text-[#777777] flex items-center w-44 justify-between"
-              (click)="toggleMenu()"
-            >
-              <span>CATEGORÍAS</span>
-              <img src="/icons/rowd.svg" alt="rowd" class="size-3" />
-            </button>
+          <!--          <div>-->
+          <button
+            type="button"
+            class="absolute inset-y-0 right-[45px] h-full px-4 bg-white border border-gray-200 text-[13px] text-[#777777] flex items-center w-44 justify-between"
+            (click)="toggleMenu()"
+          >
+            <span>CATEGORÍAS</span>
+            <img src="/icons/rowd.svg" alt="rowd" class="size-3" />
+          </button>
 
-            <div class="absolute right-[45px] px-5 py-2 bg-white border
+          <div class="absolute right-[45px] px-5 py-2 bg-white border
                             border-gray-200 shadow text-[#777777] text-sm
                             uppercase h-[320px] overflow-y-auto
                             scrollbar-thin scrollbar-thumb-gray-300
                             hover:scrollbar-thumb-gray-500
                             scrollbar-track-gray-100 z-10
                             navbar-categories {{ displayMenu  ? 'show' : 'hide' }}">
-              <ul class="space-y-2 [&>*>a:hover]:text-primary-600">
-                <li *ngFor="let category of categories;">
-                  <a>{{ category }}</a>
-                </li>
-              </ul>
-            </div>
-<!--          </div>-->
+            <ul class="space-y-2 [&>*>a:hover]:text-primary-600">
+              <li *ngFor="let category of categories;">
+                <a>{{ category }}</a>
+              </li>
+            </ul>
+          </div>
+          <!--          </div>-->
           <div class="absolute inset-y-0 right-0 w-[50px] flex items-center justify-center">
             <img src="/icons/search.svg" alt="search" class="size-5" />
           </div>
         </div>
       </div>
       <div class="inline-flex items-center gap-3 lg:gap-4">
-        <button type="button" class="font-bold text-[13px] uppercase">
+        <button type="button" class="font-bold text-[13px] uppercase" routerLink="/login">
           <span class="hidden lg:block">Ingresar / Registro</span>
           <img
             src="/icons/login.svg"
@@ -57,7 +57,7 @@
           />
         </button>
 
-        <a href="/compare" class="relative hidden lg:block" data-tooltip-target="compare-tooltip"
+        <a routerLink="/compare" class="relative hidden lg:block" data-tooltip-target="compare-tooltip"
            data-tooltip-placement="top">
           <span
             class="absolute -top-[3px] -right-[3px] flex items-center justify-center size-3 text-white bg-primary-900 rounded-full text-[9px]">
@@ -69,7 +69,7 @@
             class="size-5"
           />
         </a>
-        <app-tooltip [tooltip-id]="'compare-tooltip'" [text]="'Comparar productos'" />
+        <app-tooltip [tooltip-id]="'compare-tooltip'" [text]="'Comparar productos'" routerLink="/compare" />
         <button
           data-tooltip-target="cart-tooltip" data-tooltip-placement="top"
           class="inline-flex gap-4">

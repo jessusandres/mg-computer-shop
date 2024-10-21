@@ -71,7 +71,6 @@ export class HeaderComponent implements OnDestroy {
 
   outsideCallback(e: Event) {
     if (!this.menu.nativeElement.contains(e.target)) {
-      // console.log('==> outside callback');
       this.displayMenu = false;
     }
   }

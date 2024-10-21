@@ -23,8 +23,8 @@ import { SidebarMenuItemComponent } from '../sidebar-menu-item/sidebar-menu-item
 })
 export class SidebarMenuComponent implements OnDestroy, OnInit {
   @ViewChild('sidebarMenu', { static: true }) sidebarMenuRef!: ElementRef;
-
   private readonly outsideListener: () => void;
+
   categories: TCategory[];
   showSidebarMenu!: boolean;
   selectedCategoryId!: number;

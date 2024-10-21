@@ -1,6 +1,5 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { switchMap } from 'rxjs';
 import { NgIf } from '@angular/common';
 
 @Component({
@@ -20,12 +19,6 @@ export class ProductItemComponent implements OnInit {
     const subCategoryId = this.route.snapshot.paramMap.get('subCategoryId');
 
     this.mockCall(categoryId!, subCategoryId!);
-  }
-
-  ngOnChanges() {
-    // const categoryId = this.route.snapshot.paramMap.get('categoryId');
-    // const subCategoryId = this.route.snapshot.paramMap.get('subCategoryId');
-    // console.log({ categoryId, subCategoryId });
   }
 
   ngOnInit() {

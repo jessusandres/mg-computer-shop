@@ -1,0 +1,73 @@
+<div
+  class="h-[53px] bg-primary-900 text-white lg:flex justify-center items-center text-[13px] uppercase font-bold hidden">
+  <div class="w-full px-4 mx-auto max-w-df">
+    <div class="flex items-center justify-between">
+      <div class="flex items-center gap-10">
+        <div class="flex items-center justify-between min-w-64 relative py-[15px] cursor-pointer">
+          <div class="inline-flex items-center gap-2">
+            <img
+              src="/icons/menu-white.svg"
+              alt="menu"
+              class="w-6 h-6"
+            />
+            <span class="leading-none">TODAS LAS CATEGORÍAS</span>
+            <div class="absolute w-full bg-white border top-full z-40 lg:!block">
+              <nav>
+                <ul
+                  class="flex flex-col [&>li>a]:flex [&>li>a]:items-center [&>li>a]:px-[18px] [&>li>a]:py-3.5 [&>li>a]:gap-2 [&>li>a]:font-semibold [&>li>a]:text-sm [&>li>a:hover]:bg-gray-50 uppercase [&>li>a]:after:content-rowd [&>li>a]:after:size-4 [&>li>a]:relative [&>li>a]:after:absolute [&>li>a]:after:right-4 [&>li>a]:after:-rotate-90 [&>li>a]:after:opacity-50 divide-y *:relative text-[#333]">
+                  <!--                  {categories.map((category) => (-->
+                  <!--                        <NavbarItem-->
+                  <!--                          key={`navbar-item-${category.id}`}-->
+                  <!--                  category={category}-->
+                  <!--                  showNavBarMenuId={showNavBarMenuId}-->
+                  <!--                  setShowNavBarMenuId={setShowNavBarMenuId}-->
+                  <!--                  />-->
+                  <!--                ))}-->
+                </ul>
+              </nav>
+            </div>
+          </div>
+          <arrow-down-svg svg-class="w-4 h-4" stroke="#FFF" />
+        </div>
+        <nav>
+          <ul class="flex items-center gap-5 [&>*>a:hover]:opacity-80">
+            <li *ngFor="let menu of menus">
+              <a [routerLink]="menu.link">{{ menu.name }}</a>
+            </li>
+          </ul>
+        </nav>
+      </div>
+      <div #currencyDiv class="flex items-center gap-4">
+        <div class="relative text-[#474747] font-semibold">
+          <button
+            type="button"
+            class="bg-white text-sm px-3 py-1.5 rounded-md {{showCurrency ? 'rounded-t-md rounded-b-none': ''}}"
+            (click)="setShowCurrency(!showCurrency)"
+          >
+            {{ selectedCurrency.term }}, {{ selectedCurrency.symbol }}
+          </button>
+          <div
+            class="absolute inset-x-0 z-10"
+            [ngStyle]="{'display': showCurrency ? '' : 'none'}"
+          >
+              <button
+                *ngFor="let currency of currencies; last as isLast"
+                type="button"
+                class="w-full p-3 bg-white border shadow rounded-b-md {{isLast ? '' : 'rounded-b-none'}}"
+                (click)="setCurrency(currency.term)"
+              >
+                {{ currency.term }}, {{ currency.symbol }}
+              </button>
+          </div>
+        </div>
+        <div class="inline-flex items-center gap-2">
+          <delivery-svg svg-class="size-5" stroke-width="2" />
+          <span>Envíos</span>
+        </div>
+        <span class="pl-2 border-l border-gray-500 text-tinny">
+              T.C S/. {{ exchangeValue | currency : 'PEN' : '' : '1.2-2' }}
+            </span>
+      </div>
+    </div>
+  </div>
+</div>

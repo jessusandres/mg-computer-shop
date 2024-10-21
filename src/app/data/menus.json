@@ -1,30 +1,30 @@
 [
   {
-    "link": "#",
+    "link": "/",
     "name": "Tienda"
   },
   {
-    "link": "#",
+    "link": "featured/gamer-combos",
     "name": "Combo gamer"
   },
   {
-    "link": "#",
+    "link": "featured/laptops",
     "name": "Laptops"
   },
   {
-    "link": "#",
+    "link": "featured/printers",
     "name": "Impresoras"
   },
   {
-    "link": "#",
+    "link": "/about-us",
     "name": "Nosotros"
   },
   {
-    "link": "#",
+    "link": "/contact",
     "name": "Contacto"
   },
   {
-    "link": "#",
+    "link": "/faq",
     "name": "Preguntas"
   }
 ]
