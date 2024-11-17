@@ -14,15 +14,9 @@
             <div class="absolute w-full bg-white border top-full z-40 lg:!block">
               <nav>
                 <ul
-                  class="flex flex-col [&>li>a]:flex [&>li>a]:items-center [&>li>a]:px-[18px] [&>li>a]:py-3.5 [&>li>a]:gap-2 [&>li>a]:font-semibold [&>li>a]:text-sm [&>li>a:hover]:bg-gray-50 uppercase [&>li>a]:after:content-rowd [&>li>a]:after:size-4 [&>li>a]:relative [&>li>a]:after:absolute [&>li>a]:after:right-4 [&>li>a]:after:-rotate-90 [&>li>a]:after:opacity-50 divide-y *:relative text-[#333]">
-                  <!--                  {categories.map((category) => (-->
-                  <!--                        <NavbarItem-->
-                  <!--                          key={`navbar-item-${category.id}`}-->
-                  <!--                  category={category}-->
-                  <!--                  showNavBarMenuId={showNavBarMenuId}-->
-                  <!--                  setShowNavBarMenuId={setShowNavBarMenuId}-->
-                  <!--                  />-->
-                  <!--                ))}-->
+                  class="flex flex-col [&>li>a]:flex [&>li>a]:items-center [&>li>a]:px-[18px] [&>li>a]:py-3.5 [&>li>a]:gap-2 [&>li>a]:font-semibold [&>li>a]:text-sm [&>li>a:hover]:bg-gray-50 uppercase [&>li>a]:after:content-rowd [&>li>a]:after:size-4 [&>li>a]:relative [&>li>a]:after:absolute [&>li>a]:after:right-4 [&>li>a]:after:-rotate-90 [&>li>a]:after:opacity-50 divide-y *:relative text-[#333]"
+                >
+                  <app-navbar-item *ngFor="let category of categories" [category]="category" />
                 </ul>
               </nav>
             </div>
@@ -50,14 +44,14 @@
             class="absolute inset-x-0 z-10"
             [ngStyle]="{'display': showCurrency ? '' : 'none'}"
           >
-              <button
-                *ngFor="let currency of currencies; last as isLast"
-                type="button"
-                class="w-full p-3 bg-white border shadow rounded-b-md {{isLast ? '' : 'rounded-b-none'}}"
-                (click)="setCurrency(currency.term)"
-              >
-                {{ currency.term }}, {{ currency.symbol }}
-              </button>
+            <button
+              *ngFor="let currency of currencies; last as isLast"
+              type="button"
+              class="w-full p-3 bg-white border shadow rounded-b-md {{isLast ? '' : 'rounded-b-none'}}"
+              (click)="setCurrency(currency.term)"
+            >
+              {{ currency.term }}, {{ currency.symbol }}
+            </button>
           </div>
         </div>
         <div class="inline-flex items-center gap-2">

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
 /* Project */
-import { Currencies, Categories, Menus } from '@app/data';
+import { Currencies, Categories, Menus, Products } from '@app/data';
 import { generateRandom } from '@app/helpers';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class HomeStateProvider {
   private _menus = Menus;
   private _currencies = Currencies;
   private _categories = Categories;
+  private _products = Products;
 
   private _showSidebarMenu = new BehaviorSubject<boolean>(false);
   private _selectedCategoryId = new BehaviorSubject<number>(0);
@@ -61,5 +62,9 @@ export class HomeStateProvider {
 
   get currencies() {
     return this._currencies;
+  }
+
+  get products() {
+    return this._products;
   }
 }

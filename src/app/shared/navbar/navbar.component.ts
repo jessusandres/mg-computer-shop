@@ -6,28 +6,27 @@ import {
   Renderer2,
   ViewChild,
 } from '@angular/core';
-import { CurrencyPipe, NgForOf, NgIf, NgStyle } from '@angular/common';
+import { CurrencyPipe, NgForOf, NgStyle } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 /* Project */
 import { ArrowDownSvgComponent } from '@app/shared/icons/arrow-down-svg/arrow-down-svg.component';
-import { CartSvgComponent } from '@app/shared/icons/cart-svg/cart-svg.component';
 import { DeliverySvgComponent } from '@app/shared/icons/delivery-svg/delivery-svg.component';
 import { HomeStateProvider } from '@app/providers/home-state.provider';
-import { TCurrency, TMenu } from '@app/types';
+import { TCategory, TCurrency, TMenu } from '@app/types';
+import { NavbarItemComponent } from '@app/shared/navbar-item/navbar-item.component';
 
 @Component({
   selector: 'app-navbar',
   standalone: true,
   imports: [
     ArrowDownSvgComponent,
-    CartSvgComponent,
     DeliverySvgComponent,
     NgForOf,
     RouterLink,
     NgStyle,
-    NgIf,
     CurrencyPipe,
+    NavbarItemComponent,
   ],
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.scss',
@@ -39,6 +38,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   showCurrency = false;
   exchangeValue!: number;
   selectedCurrency!: TCurrency;
+  categories: TCategory[];
   menus: TMenu[];
   currencies: TCurrency[] = [];
 
@@ -47,6 +47,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private homeStateProvider: HomeStateProvider,
   ) {
     this.menus = this.homeStateProvider.menus;
+    this.categories = this.homeStateProvider.categories;
     // this.currencies = this.homeStateProvider.currencies;
 
     this.outsideListener = this.renderer.listen(

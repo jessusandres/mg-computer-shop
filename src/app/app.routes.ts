@@ -4,6 +4,7 @@ import { Route, Routes, UrlSegment } from '@angular/router';
 import { PageNotFoundComponent } from '@app/pages/page-not-found/page-not-found.component';
 import { HomeComponent } from '@app/pages/home/home.component';
 import { ProductItemComponent } from '@app/pages/product-item/product-item.component';
+import { PrimaryLayoutComponent } from '@app/layouts/primary-layout/primary-layout.component';
 
 export const routes: Routes = [
   {
@@ -13,8 +14,12 @@ export const routes: Routes = [
   },
   {
     path: '',
-    component: HomeComponent,
+    component: PrimaryLayoutComponent,
     children: [
+      {
+        path: '',
+        component: HomeComponent,
+      },
       {
         path: 'about-us',
         loadComponent: () =>

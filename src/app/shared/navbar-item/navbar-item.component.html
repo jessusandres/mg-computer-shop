@@ -1,0 +1,30 @@
+<li
+  class="{{isSelected ? 'bg-gray-100' : ''}}"
+  (mouseenter)="setSelectedCategoryId()"
+  (mouseleave)="removeSelectedCategoryId()"
+>
+  <div class="flex items-center px-[18px] py-2.5 font-semibold text-sm">
+    <a class="flex items-center flex-grow gap-2">
+      <img src="icons/{{category.svg}}" alt="{{category.name}}" />
+      {{ category.name }}
+    </a>
+    <button type="button" class="py-1.5">
+      <img
+        src="{{ isSelected ? 'icons/rowr.svg': 'icons/rowd.svg'}}"
+        alt="{{ isSelected ? 'rowd' :'rowr' }}"
+        class="w-4 h-4"
+      />
+    </button>
+  </div>
+  <div
+    class="absolute top-0 z-10 w-full bg-white left-full px-4 py-3 border text-sm *:space-y-2 navbar-item {{isSelected ? 'show' : 'hide'}}"
+    *ngIf="Array.isArray(category.subCategories) && category.subCategories.length > 0"
+  >
+    <ul class="[&amp;>*>a:hover]:text-primary-600">
+      <div *ngFor="let subCategory of category.subCategories; last as isLast">
+        <app-navbar-sub-item [sub-category]="subCategory" />
+        <hr *ngIf="!isLast" />
+      </div>
+    </ul>
+  </div>
+</li>

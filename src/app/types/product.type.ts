@@ -16,4 +16,5 @@ export type TProduct = {
   pricePEN: number;
   priceUSD: number;
   warehouses: TWarehouse[];
+  stock: number;
 };

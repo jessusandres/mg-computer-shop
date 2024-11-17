@@ -4,17 +4,16 @@ import { NgForOf, NgIf } from '@angular/common';
 /* Project */
 import { TCategory } from '@app/types';
 import { HomeStateProvider } from '@app/providers/home-state.provider';
-import { SidebarMenuSubItemComponent } from '@app/shared/sidebar-menu-sub-item/sidebar-menu-sub-item.component';
+import { NavbarSubItemComponent } from '@app/shared/navbar-sub-item/navbar-sub-item.component';
 
 @Component({
-  selector: 'app-sidebar-menu-item',
+  selector: 'app-navbar-item',
   standalone: true,
-  imports: [NgForOf, NgIf, SidebarMenuSubItemComponent],
-  templateUrl: './sidebar-menu-item.component.html',
-  styleUrl: './sidebar-menu-item.component.scss',
-  providers: [],
+  imports: [NgForOf, NgIf, NavbarSubItemComponent],
+  templateUrl: './navbar-item.component.html',
+  styleUrl: './navbar-item.component.scss',
 })
-export class SidebarMenuItemComponent implements OnInit {
+export class NavbarItemComponent implements OnInit {
   @Input({
     alias: 'category',
     required: true,
@@ -39,8 +38,7 @@ export class SidebarMenuItemComponent implements OnInit {
     this.homeStateProvider.setSelectedCategoryId(this.category.id);
   }
 
-  handleRouter(id: number) {
-    console.log('==> pushing to route:', this.category.id, id);
-    this.homeStateProvider.setSidebarMenu(false);
+  removeSelectedCategoryId() {
+    this.homeStateProvider.setSelectedCategoryId(0);
   }
 }
