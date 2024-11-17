@@ -1,17 +1,13 @@
 import { Component } from '@angular/core';
-
-/* Project */
 import { ProductCarrouselComponent } from '@app/shared/product-carrousel/product-carrousel.component';
 
 @Component({
-  selector: 'app-latest',
+  selector: 'app-featured-products',
   standalone: true,
   imports: [ProductCarrouselComponent],
-  templateUrl: './latest.component.html',
-  styleUrl: './latest.component.scss',
+  templateUrl: './featured-products.component.html',
+  styleUrl: './featured-products.component.scss',
 })
-export class LatestComponent {
-  key = 'latest-products';
-
-  constructor() {}
+export class FeaturedProductsComponent {
+  key = 'featured-products';
 }

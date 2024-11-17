@@ -15,6 +15,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-STUKA-CR11-WHITE-860x860.jpg",
     "pricePEN": 238.99,
     "priceUSD": 61.92,
+    "priceEUR": 62.90,
     "warehouses": [
       {
         "id": 1,
@@ -47,6 +48,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
     "pricePEN": 238.99,
     "priceUSD": 61.92,
+    "priceEUR": 63.90,
     "warehouses": [
       {
         "id": 1,
@@ -75,6 +77,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/RAZER-COBRA-860x860.jpg",
     "pricePEN": 238.99,
     "priceUSD": 61.92,
+    "priceEUR": 62.50,
     "warehouses": [
       {
         "id": 2,
@@ -103,6 +106,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/MO24VG249Q1A-860x860.jpg",
     "pricePEN": 774.99,
     "priceUSD": 184.55,
+    "priceEUR": 190.90,
     "warehouses": [
       {
         "id": 1,
@@ -131,6 +135,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-TORNADO-04-WHITE-860x860.jpg",
     "pricePEN": 138.99,
     "priceUSD": 41.92,
+    "priceEUR": 42.10,
     "warehouses": [
       {
         "id": 2,
@@ -159,6 +164,7 @@
     "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
     "pricePEN": 222.99,
     "priceUSD": 33.70,
+    "priceEUR": 33.90,
     "warehouses": [
       {
         "id": 1,

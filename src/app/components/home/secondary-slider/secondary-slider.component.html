@@ -1,0 +1,23 @@
+<section class="pt-8 pb-16">
+  <div class="px-4 mx-auto max-w-df">
+    <div class="flex flex-wrap gap-4 lg:flex-nowrap">
+      <div class="w-full lg:w-1/4">
+        <a routerLink="/">
+          <img
+            src="https://gamerbit.pe/wp-content/uploads/2022/09/PC-GAMER_RYZEN-5-5500-RX-6600-700x1145.jpg"
+            alt=""
+            class="w-full h-full"
+          />
+        </a>
+      </div>
+      <div class="w-full lg:w-3/4">
+        <div class="{{key}} navSwiper">
+          <h4 class="text-[22px] font-semibold font-poppins mb-5">
+            MEMORIA RAM
+          </h4>
+          <app-product-carrousel [key]="key" style="height: 30rem; display: block;" />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

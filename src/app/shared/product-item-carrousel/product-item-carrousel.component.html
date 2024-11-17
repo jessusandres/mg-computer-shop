@@ -4,12 +4,12 @@
       class="absolute right-0 hidden transition-all duration-200 translate-x-12 opacity-0 lg:block group-hover:opacity-100 group-hover:translate-x-0"
     >
       <div class="flex flex-col">
-        <app-tooltip [tooltip-id]="product.id + '-compare'" [text]="'Comparar productos'" />
+        <app-tooltip [tooltip-id]="baseIdentifier+'-compare'" [text]="'Comparar productos'" />
 
         <a
           routerLink="/"
           class="size-[50px] bg-white flex justify-center items-center shadow-sm border-r"
-          [attr.data-tooltip-target]="product.id + '-compare'"
+          [attr.data-tooltip-target]="baseIdentifier+'-compare'"
           data-tooltip-placement="left"
         >
           <svg
@@ -27,11 +27,11 @@
             />
           </svg>
         </a>
-        <app-tooltip [tooltip-id]="product.id+'-preview'" [text]="'Vista previa'" />
+        <app-tooltip [tooltip-id]="baseIdentifier+'-preview'" [text]="'Vista previa'" />
         <a
           routerLink="/"
           class="size-[50px] bg-white flex justify-center items-center shadow-sm border-r"
-          [attr.data-tooltip-target]="product.id + '-preview'"
+          [attr.data-tooltip-target]="baseIdentifier+'-preview'"
           data-tooltip-placement="left"
         >
           <svg
@@ -91,28 +91,28 @@
             </li>
           </ul>
           <div class="flex flex-col items-center gap-5">
-            <button
-              *ngIf="selectedWarehouse !== 0"
-              (click)="setWarehouse(0)"
-              type="button"
-              class="inline-flex items-center gap-1 text-xs"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                class="w-4 h-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M6 18 18 6M6 6l12 12"
-                />
-              </svg>
-              Limpiar
-            </button>
+<!--            <button-->
+<!--              *ngIf="selectedWarehouse !== 0"-->
+<!--              (click)="setWarehouse(0)"-->
+<!--              type="button"-->
+<!--              class="inline-flex items-center gap-1 text-xs"-->
+<!--            >-->
+<!--              <svg-->
+<!--                xmlns="http://www.w3.org/2000/svg"-->
+<!--                fill="none"-->
+<!--                viewBox="0 0 24 24"-->
+<!--                stroke-width="1.5"-->
+<!--                stroke="currentColor"-->
+<!--                class="w-4 h-4"-->
+<!--              >-->
+<!--                <path-->
+<!--                  stroke-linecap="round"-->
+<!--                  stroke-linejoin="round"-->
+<!--                  d="M6 18 18 6M6 6l12 12"-->
+<!--                />-->
+<!--              </svg>-->
+<!--              Limpiar-->
+<!--            </button>-->
             <div class="inline-flex items-center">
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -155,7 +155,7 @@
       <h3
         class="mb-3 text-sm font-medium text-black font-poppins"
       >
-        {{ product.name }}
+        {{ trimmedName }}
       </h3>
       <ul
         class="flex flex-wrap gap-1 text-xs text-gray-400 uppercase mb-2 [&>*>a:hover]:text-primary-900 justify-center"
@@ -166,10 +166,10 @@
     </div>
     <div class="flex flex-col items-center">
       <span class="block mb-6 text-lg font-semibold text-primary-900">
-        S./{{ product.pricePEN }} - ${{ product.priceUSD }}
+       {{calculatedPrice}}
       </span>
       <a
-        (click)="showMenu()"
+        (click)="toggleMenu()"
         class="cursor-pointer relative flex items-center justify-center gap-2 overflow-hidden text-[13px] font-semibold text-white uppercase transition rounded-full max-w-fit hover:bg-primary-950 bg-primary-900 group/cart before:content-cart before:absolute before:size-5 before:translate-y-full before:opacity-0 hover:before:translate-y-0 hover:before:opacity-100 before:transition-all before:duration-200 before:ease-in-out before:flex before:items-center before:justify-center flex-shrink-0"
       >
         <span

@@ -1,5 +1,5 @@
 import { NgForOf } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 /* Project */
 import { ProductItemCarrouselComponent } from '@app/shared/product-item-carrousel/product-item-carrousel.component';
@@ -16,40 +16,57 @@ declare let Swiper: any;
   styleUrl: './product-carrousel.component.scss',
 })
 export class ProductCarrouselComponent implements OnInit {
+  @Input({
+    required: true,
+    alias: 'key',
+  })
+  key!: string;
+
   readonly products: TProduct[];
+  swiper: any;
 
   constructor(private readonly homeStateProvider: HomeStateProvider) {
     this.products = this.homeStateProvider.products;
   }
 
   ngOnInit() {
-    new Swiper('.latest-swiper', {
-      slidesPerView: 1.5,
-      spaceBetween: 20,
-      loop: false,
-      grabCursor: true,
-      autoplay: {
-        delay: 3500,
-        disableOnInteraction: true,
-      },
-      pagination: {
-        el: '.products .swiper-pagination',
-        clickable: true,
-      },
-      navigation: {
-        nextEl: '.products .swiper-button-next',
-        prevEl: '.products .swiper-button-prev',
-      },
-      breakpoints: {
-        768: {
-          slidesPerView: 3.3,
-          spaceBetween: 16,
+    setTimeout(() => {
+      this.swiper = new Swiper(`.${this.key}-swiper`, {
+        slidesPerView: 1.5,
+        spaceBetween: 20,
+        loop: false,
+        grabCursor: true,
+        autoplay: {
+          delay: 3500,
+          disableOnInteraction: true,
         },
-        1024: {
-          slidesPerView: 5,
-          spaceBetween: 20,
+        pagination: {
+          el: `.${this.key} .swiper-pagination`,
+          clickable: true,
         },
-      },
+        navigation: {
+          nextEl: `.${this.key} .swiper-button-next`,
+          prevEl: `.${this.key} .swiper-button-prev`,
+        },
+        breakpoints: {
+          768: {
+            slidesPerView: 3.3,
+            spaceBetween: 16,
+          },
+          1024: {
+            slidesPerView: 5,
+            spaceBetween: 20,
+          },
+        },
+      });
     });
+  }
+
+  stopPlaying() {
+    this.swiper?.autoplay.stop();
+  }
+
+  startPlaying() {
+    this.swiper?.autoplay.start();
   }
 }

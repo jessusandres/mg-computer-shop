@@ -15,6 +15,7 @@ export type TProduct = {
   image: string;
   pricePEN: number;
   priceUSD: number;
+  priceEUR: number;
   warehouses: TWarehouse[];
   stock: number;
 };

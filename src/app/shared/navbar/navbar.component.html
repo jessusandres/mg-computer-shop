@@ -3,7 +3,7 @@
   <div class="w-full px-4 mx-auto max-w-df">
     <div class="flex items-center justify-between">
       <div class="flex items-center gap-10">
-        <div class="flex items-center justify-between min-w-64 relative py-[15px] cursor-pointer">
+        <div class="flex items-center justify-between min-w-64 relative py-[15px] cursor-pointer" (click)="toggleDisplayMenu()">
           <div class="inline-flex items-center gap-2">
             <img
               src="/icons/menu-white.svg"
@@ -11,7 +11,7 @@
               class="w-6 h-6"
             />
             <span class="leading-none">TODAS LAS CATEGORÍAS</span>
-            <div class="absolute w-full bg-white border top-full z-40 lg:!block">
+            <div class="absolute w-full bg-white border top-full z-40 lg:!block navbar-menu {{displayMenu ? 'show' : 'hide'}}">
               <nav>
                 <ul
                   class="flex flex-col [&>li>a]:flex [&>li>a]:items-center [&>li>a]:px-[18px] [&>li>a]:py-3.5 [&>li>a]:gap-2 [&>li>a]:font-semibold [&>li>a]:text-sm [&>li>a:hover]:bg-gray-50 uppercase [&>li>a]:after:content-rowd [&>li>a]:after:size-4 [&>li>a]:relative [&>li>a]:after:absolute [&>li>a]:after:right-4 [&>li>a]:after:-rotate-90 [&>li>a]:after:opacity-50 divide-y *:relative text-[#333]"

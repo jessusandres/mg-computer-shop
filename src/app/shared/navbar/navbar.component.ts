@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CurrencyPipe, NgForOf, NgStyle } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { NavigationEnd, Router, RouterLink } from '@angular/router';
 
 /* Project */
 import { ArrowDownSvgComponent } from '@app/shared/icons/arrow-down-svg/arrow-down-svg.component';
@@ -41,11 +41,19 @@ export class NavbarComponent implements OnInit, OnDestroy {
   categories: TCategory[];
   menus: TMenu[];
   currencies: TCurrency[] = [];
+  displayMenu = false;
 
   constructor(
+    private router: Router,
     private renderer: Renderer2,
     private homeStateProvider: HomeStateProvider,
   ) {
+    router.events.subscribe((value) => {
+      if (value instanceof NavigationEnd) {
+        this.displayMenu = router.url === '/';
+      }
+    });
+
     this.menus = this.homeStateProvider.menus;
     this.categories = this.homeStateProvider.categories;
     // this.currencies = this.homeStateProvider.currencies;
@@ -92,5 +100,9 @@ export class NavbarComponent implements OnInit, OnDestroy {
     const outside = !this.currencyDivRef.nativeElement.contains(event.target);
 
     if (outside) this.showCurrency = false;
+  }
+
+  toggleDisplayMenu() {
+    this.displayMenu = !this.displayMenu;
   }
 }
