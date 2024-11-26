@@ -1,3 +1,4 @@
+import { RouterLink } from '@angular/router';
 import {
   Component,
   ElementRef,
@@ -10,7 +11,7 @@ import { NgForOf } from '@angular/common';
 /* Project */
 import { TooltipComponent } from '../tooltip/tooltip.component';
 import { HomeStateProvider } from '@app/providers/home-state.provider';
-import { RouterLink } from '@angular/router';
+import { productSymbol } from '@app/helpers';
 
 @Component({
   selector: 'app-header',
@@ -49,6 +50,7 @@ export class HeaderComponent implements OnDestroy {
 
   private readonly outsideListener: () => void;
 
+  currency!: string;
   displayMenu: boolean = false;
   displaySidebarMenu!: boolean;
 
@@ -66,6 +68,10 @@ export class HeaderComponent implements OnDestroy {
 
     this.homeStateProvider.showSidebarMenu$.subscribe((showSidebarMenu) => {
       this.displaySidebarMenu = showSidebarMenu;
+    });
+
+    this.homeStateProvider.selectedCurrency$.subscribe((currency) => {
+      this.currency = currency;
     });
   }
 
@@ -88,8 +94,23 @@ export class HeaderComponent implements OnDestroy {
     this.displayMenu = !this.displayMenu;
   }
 
+  openCart(event: Event) {
+    event.stopPropagation();
+    this.homeStateProvider.openLateralCart();
+  }
+
+  get cartItemsLength(): number {
+    return this.homeStateProvider.cartProducts.length;
+  }
+
+  get cartProductsTotal(): number {
+    return this.homeStateProvider.cartProductsTotal;
+  }
+
   ngOnDestroy() {
     // console.log('===> On destroy element');
     this.outsideListener();
   }
+
+  protected readonly productSymbol = productSymbol;
 }

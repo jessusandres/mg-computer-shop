@@ -1,0 +1,207 @@
+<div
+  class="fixed inset-0 z-50 overflow-y-auto product-modal {{!!product ? 'show' : 'hide'}}"
+  [formGroup]="cartForm"
+>
+<!--  (ngSubmit)="addToCart($event)"-->
+  <!--  x-transition:enter="transition ease-out duration-150"-->
+  <!--  x-transition:enter-start="opacity-0 transform translate-y-1/2"-->
+  <!--  x-transition:leave="transition ease-in duration-150"-->
+  <!--  x-transition:leave-end="opacity-0  transform translate-y-1/2"-->
+  <div
+    class="flex items-center justify-center min-h-screen py-5 mx-4 md:mx-0 lg:py-0"
+  >
+    <div
+      class="w-full overflow-hidden bg-white shadow-md rounded-xl md:max-w-[950px] md:w-auto relative"
+      #productModalRef
+    >
+      <button
+        class="absolute inline-flex items-center justify-center flex-shrink-0 w-8 h-8 text-gray-400 transition-colors duration-150 bg-gray-100 rounded-full right-3 top-2 hover: hover:text-gray-700"
+        aria-label="close"
+        (click)="closeModal()"
+      >
+        <svg
+          class="w-4 h-4"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          role="img"
+          aria-hidden="true"
+        >
+          <path
+            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+            clip-rule="evenodd"
+            fill-rule="evenodd"
+          ></path>
+        </svg>
+      </button>
+      <div class="flex flex-wrap gap-4 md:flex-nowrap">
+        <div class="relative w-full lg:w-1/2 group/modal-image">
+          <div
+            class="absolute inset-x-0 bottom-0 transition-all duration-300 translate-y-full opacity-0 group-hover/modal-image:opacity-100 group-hover/modal-image:translate-y-0"
+          >
+            <a
+              (click)="viewDetails()"
+              class="w-full bg-primary-950 hover:bg-primary-900 text-white text-center px-4 py-3 text-[13px] font-semibold flex justify-center"
+            >
+              VER DETALLES
+            </a>
+          </div>
+          <img
+            [src]="product?.image"
+            alt=""
+            class="object-contain w-full h-full"
+          />
+        </div>
+        <div class="w-full h-auto px-4 pb-5 overflow-y-auto lg:w-1/2 pt-7">
+          <h1 class="text-[26px] font-medium font-poppins mb-4">
+            {{ product?.name }}
+          </h1>
+          <p class="text-sm text-pretty text-[#777777] mb-4">
+            {{ product?.description }}
+          </p>
+          <div
+            class="w-full mb-4 border-2 px-4 py-1.5 border-green-500 rounded-lg"
+          >
+                <span class="block mb-1 text-lg font-semibold text-green-500"
+                >
+                  {{ priceText }}
+                </span>
+            <p class="text-tinny text-[#6a6a6a] font-semibold" *ngFor="let discount of product?.discounts">
+              *{{ discount.amount }}% Adicional para pago con {{ Payments.get(discount.method) }}.
+            </p>
+          </div>
+          <div>
+                <span class="block mb-2.5 text-sm font-semibold text-black"
+                >Almacén:</span
+                >
+            <div>
+              <ul
+                class="flex items-center gap-2 [&amp;>*>span]:border [&amp;>*>span]:border-gray-300 [&amp;>*>span]:bg-white [&amp;>*>span]:px-3 [&amp;>*>span]:py-1 [&amp;>*>span]:rounded-md [&amp;>*>span]:cursor-pointer [&amp;>*>span:hover]:border-gray-300 [&amp;>*>span:hover]:border-2 transition-all mb-5"
+              >
+                <li *ngFor="let warehouse of product?.warehouses" (click)="setWarehouse(warehouse.id)">
+                      <span
+                        data-value="12"
+                        data-city="Chiclayo"
+                        class="{{cartForm.get('warehouse')?.value === warehouse.id ? '!border-2 !border-black' : ''}}"
+                      >
+                        {{warehouse.name}}
+                      </span>
+                </li>
+              </ul>
+              <span class="block mb-2.5 text-sm font-semibold text-black" *ngIf="(Number(cartForm.get('warehouse')?.value) || 0) === 0">
+                Seleccione un almacén
+              </span>
+              <div
+                class="flex flex-col items-start gap-5"
+                style="display: none"
+              >
+                <button
+                  type="button"
+                  class="inline-flex items-center gap-1 text-xs"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="1.5"
+                    stroke="currentColor"
+                    class="w-4 h-4"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="M6 18 18 6M6 6l12 12"
+                    ></path>
+                  </svg>
+                  Limpiar
+                </button>
+                <div class="inline-flex items-center">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke-width="2"
+                    stroke="currentColor"
+                    class="w-5 h-5 text-green-500"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      d="m4.5 12.75 6 6 9-13.5"
+                    ></path>
+                  </svg>
+                  <p class="text-sm font-semibold">
+                    <span>22</span> Disponibles
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="inline-flex gap-4 mb-6 mt-7">
+            <div class="relative">
+              <input
+                type="number"
+                name="cart-amount"
+                class="w-24 h-full px-4 py-2 text-sm leading-normal text-center text-gray-500 bg-white border border-gray-200 rounded-full outline-none appearance-none text-bread"
+                formControlName="cartAmount"
+                [value]="cartAmount"
+              />
+              <div
+                class="absolute inset-y-0 py-3 pl-2 border-r border-gray-200"
+              >
+                <button
+                  (click)="subtractOne()"
+                  class="flex items-center justify-center w-5 h-5 text-lg text-gray-600 transition-all duration-300 ease-in-out bg-white rounded-full"
+                  style="outline: none"
+                >
+                  -
+                </button>
+              </div>
+              <div
+                class="absolute inset-y-0 right-0 py-3 pr-2 border-l border-gray-200"
+              >
+                <button
+                  (click)="addOne()"
+                  class="flex items-center justify-center w-5 h-5 text-lg text-gray-600 transition-all duration-300 ease-in-out bg-white rounded-full outline-none"
+                  style="outline: none"
+                >
+                  +
+                </button>
+              </div>
+            </div>
+            <button
+              type="submit"
+              (click)="addToCart($event)"
+              [disabled]="!cartForm.valid"
+              class="px-4 py-2 font-bold leading-normal text-white transition-all duration-300 ease-in-out border rounded-full appearance-none {{cartForm.valid ? 'bg-primary-950 hover:bg-primary-900 border-primary-950 hover:border-primary-900' : 'bg-gray-400'}} text-[13px] max-w-fit"
+            >
+              AÑADIR AL CARRITO
+            </button>
+          </div>
+          <ul class="text-sm text-[#777777] pt-6 border-t">
+            <li><strong class="!text-black">Stock:</strong> {{ product?.stock }}</li>
+            <li><strong class="!text-black">SKU:</strong> {{ product?.sku }}</li>
+            <li>
+              <strong class="!text-black">Categorías: </strong>
+              <div style="display: contents" *ngFor="let category of product?.categories; last as isLast">
+                <a class="cursor-pointer hover:text-primary-950">
+                  {{ category.name.toUpperCase() }}
+                </a>
+                {{ isLast ? '' : ',' }}
+              </div>
+
+            </li>
+            <li>
+              <strong class="!text-black">Tags: </strong>
+              <div style="display: contents" *ngFor="let tag of product?.tags; last as isLast">
+                <a class="cursor-pointer hover:text-primary-950">{{ tag.name.toUpperCase() }}</a>
+                {{ isLast ? '' : ',' }}
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+

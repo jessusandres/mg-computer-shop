@@ -57,37 +57,36 @@
           />
         </button>
 
-        <a routerLink="/compare" class="relative hidden lg:block" data-tooltip-target="compare-tooltip"
-           data-tooltip-placement="top">
-          <span
-            class="absolute -top-[3px] -right-[3px] flex items-center justify-center size-3 text-white bg-primary-900 rounded-full text-[9px]">
-            0
-          </span>
-          <img
-            src="/icons/compare.svg"
-            alt="compare"
-            class="size-5"
-          />
-        </a>
-        <app-tooltip [tooltip-id]="'compare-tooltip'" [text]="'Comparar productos'" routerLink="/compare" />
+        <!--        <a routerLink="/compare" class="relative hidden lg:block" data-tooltip-target="compare-tooltip"-->
+        <!--           data-tooltip-placement="top">-->
+        <!--          <span-->
+        <!--            class="absolute -top-[3px] -right-[3px] flex items-center justify-center size-3 text-white bg-primary-900 rounded-full text-[9px]">-->
+        <!--            0-->
+        <!--          </span>-->
+        <!--          <img-->
+        <!--            src="/icons/compare.svg"-->
+        <!--            alt="compare"-->
+        <!--            class="size-5"-->
+        <!--          />-->
+        <!--        </a>-->
+        <!--        <app-tooltip [tooltip-id]="'compare-tooltip'" [text]="'Comparar productos'" routerLink="/compare" />-->
         <button
+          (click)="openCart($event)"
           data-tooltip-target="cart-tooltip" data-tooltip-placement="top"
           class="inline-flex gap-4">
-          <!--          onClick={() => console.log('cartModal = true')}-->
-
           <div class="relative">
                   <span
                     class="absolute -top-[3px] -right-[3px] flex items-center justify-center size-3 text-white bg-primary-900 rounded-full text-[9px]">
-                    0
+                    {{ cartItemsLength }}
                   </span>
             <img src="/icons/cart.svg" alt="cart" class="size-5" />
           </div>
           <span class="text-[13px] font-bold hidden lg:block">
-                  S/. 0.00
-                </span>
+            {{ productSymbol(this.currency) }} {{ cartProductsTotal.toFixed(2) }}
+          </span>
         </button>
-        <app-tooltip [tooltip-id]="'cart-tooltip'" [text]="'Carrito de compras'" />
       </div>
     </div>
   </div>
+  <app-tooltip [tooltip-id]="'cart-tooltip'" [text]="'Carrito de compras'" />
 </header>

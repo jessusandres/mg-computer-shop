@@ -1,0 +1,21 @@
+.modal-overlay {
+  @starting-style {
+    opacity: 0;
+    display: none;
+  }
+
+  transition-property: display, opacity, transform;
+  transition-duration: .350s;
+  transition-behavior: allow-discrete;
+}
+
+.modal-overlay.hide {
+  display: none;
+  opacity: 0;
+}
+
+.modal-overlay.show {
+  display: block;
+  opacity: 1;
+}
+

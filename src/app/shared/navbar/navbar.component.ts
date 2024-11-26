@@ -42,15 +42,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
   menus: TMenu[];
   currencies: TCurrency[] = [];
   displayMenu = false;
+  isHome = false;
 
   constructor(
-    private router: Router,
-    private renderer: Renderer2,
+    private readonly router: Router,
+    private readonly renderer: Renderer2,
     private homeStateProvider: HomeStateProvider,
   ) {
-    router.events.subscribe((value) => {
+    this.router.events.subscribe((value) => {
       if (value instanceof NavigationEnd) {
         this.displayMenu = router.url === '/';
+        this.isHome = router.url === '/';
       }
     });
 
@@ -103,6 +105,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleDisplayMenu() {
-    this.displayMenu = !this.displayMenu;
+    if (!this.isHome) {
+      this.displayMenu = !this.displayMenu;
+    }
   }
 }

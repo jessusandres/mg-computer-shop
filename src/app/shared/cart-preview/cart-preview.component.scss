@@ -1,27 +1,22 @@
-.navbar-menu {
+.cart-modal {
   @starting-style {
     opacity: 0;
     display: none;
-    transform: translateY(2.5rem);
+    transform: translateX(50%);
   }
 
-
-  transform: translateY(0);
+  transform: translateX(0);
   transition-property: display, opacity, transform;
   transition-duration: .150s;
   transition-behavior: allow-discrete;
 }
 
-.navbar-menu.show {
+.cart-modal.show {
   display: block;
   opacity: 1;
 }
 
-.navbar-menu.hide {
+.cart-modal.hide {
   display: none;
   opacity: 0;
-}
-
-.hidden {
-  display: none;
 }

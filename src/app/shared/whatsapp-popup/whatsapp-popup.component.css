@@ -1,27 +1,24 @@
-.navbar-menu {
+.wsp-popup {
   @starting-style {
     opacity: 0;
     display: none;
-    transform: translateY(2.5rem);
+    transform: translateY(3.5rem);
   }
-
 
   transform: translateY(0);
   transition-property: display, opacity, transform;
-  transition-duration: .150s;
+  transition-duration: .350s;
   transition-behavior: allow-discrete;
 }
 
-.navbar-menu.show {
+.wsp-popup.hide {
+  display: none;
+  transform: translateY(3.5rem);
+  opacity: 0;
+}
+
+.wsp-popup.show {
   display: block;
   opacity: 1;
 }
 
-.navbar-menu.hide {
-  display: none;
-  opacity: 0;
-}
-
-.hidden {
-  display: none;
-}

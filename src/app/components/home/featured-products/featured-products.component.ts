@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { ProductCarrouselComponent } from '@app/shared/product-carrousel/product-carrousel.component';
 
 @Component({
@@ -9,5 +9,6 @@ import { ProductCarrouselComponent } from '@app/shared/product-carrousel/product
   styleUrl: './featured-products.component.scss',
 })
 export class FeaturedProductsComponent {
-  key = 'featured-products';
+  @Input({ required: true }) key!: string;
+  @Input({ required: true }) title!: string;
 }

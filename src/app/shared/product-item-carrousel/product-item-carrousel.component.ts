@@ -1,16 +1,17 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { RouterLink } from '@angular/router';
 
 /* Project */
 import { TProduct } from '@app/types';
 import { TooltipComponent } from '@app/shared/tooltip/tooltip.component';
 import { HomeStateProvider } from '@app/providers/home-state.provider';
+import { productPrice, productSymbol } from '@app/helpers';
 
 @Component({
   selector: 'app-product-item-carrousel',
   standalone: true,
-  imports: [TooltipComponent, NgForOf, RouterLink],
+  imports: [TooltipComponent, NgForOf, RouterLink, NgIf],
   templateUrl: './product-item-carrousel.component.html',
   styleUrl: './product-item-carrousel.component.scss',
 })
@@ -27,16 +28,13 @@ export class ProductItemCarrouselComponent implements OnInit {
   })
   key!: string;
 
+  currency!: string;
   displayMenu: boolean = false;
   selectedWarehouse: number = 0;
   baseIdentifier: string = '';
-  private selectedCurrency!: string;
+  priceText!: string;
 
-  constructor(homeStateProvider: HomeStateProvider) {
-    homeStateProvider.selectedCurrency$.subscribe((currency) => {
-      this.selectedCurrency = currency;
-    });
-  }
+  constructor(private readonly homeStateProvider: HomeStateProvider) {}
 
   get trimmedName() {
     const currentLength = this.product.name.length;
@@ -50,6 +48,12 @@ export class ProductItemCarrouselComponent implements OnInit {
 
   ngOnInit() {
     this.baseIdentifier = `${this.key}-product-${this.product.id}`;
+
+    this.homeStateProvider.selectedCurrency$.subscribe((currency) => {
+      this.currency = currency;
+      this.priceText =
+        productSymbol(currency) + productPrice(currency, this.product);
+    });
   }
 
   toggleMenu() {
@@ -60,12 +64,27 @@ export class ProductItemCarrouselComponent implements OnInit {
     this.displayMenu = false;
   }
 
-  addToCart() {
+  addToCart(event: Event) {
+    event.stopPropagation();
     console.log({
       id: this.product.id,
       quantity: 1,
       warehouse: this.selectedWarehouse,
     });
+
+    this.homeStateProvider.addProductToCart(
+      {
+        id: this.product.id,
+        quantity: 1,
+        warehouse: this.selectedWarehouse,
+        name: this.product.name,
+        pricePEN: this.product.pricePEN,
+        priceUSD: this.product.priceUSD,
+        priceEUR: this.product.priceEUR,
+        image: this.product.image,
+      },
+      true,
+    );
 
     this.displayMenu = false;
     this.selectedWarehouse = 0;
@@ -75,16 +94,10 @@ export class ProductItemCarrouselComponent implements OnInit {
     this.selectedWarehouse = id;
   }
 
-  get calculatedPrice() {
-    switch (this.selectedCurrency) {
-      case 'PEN':
-        return `S./${this.product.pricePEN}`;
-      case 'USD':
-        return `$${this.product.priceUSD}`;
-      case 'EUR':
-        return `€${this.product.priceEUR}`;
-      default:
-        return `S./${this.product.pricePEN}`;
-    }
+  setProductModal(event: Event) {
+    event.stopPropagation();
+    this.homeStateProvider.setProductModal(this.product);
   }
+
+  protected readonly Number = Number;
 }
