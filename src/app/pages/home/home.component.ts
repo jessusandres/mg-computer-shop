@@ -12,6 +12,7 @@ import { PrimaryBannerComponent } from '@app/components/home/primary-banner/prim
 import { SecondarySliderComponent } from '@app/components/home/secondary-slider/secondary-slider.component';
 import { SiteReferenceComponent } from '@app/components/home/site-reference/site-reference.component';
 import { HardwareGuideComponent } from '@app/components/home/hardware-guide/hardware-guide.component';
+import { HomeStateProvider } from '@app/providers/home-state.provider';
 
 @Component({
   selector: 'app-home',
@@ -30,4 +31,8 @@ import { HardwareGuideComponent } from '@app/components/home/hardware-guide/hard
   templateUrl: './home.component.html',
   styleUrl: './home.component.scss',
 })
-export class HomeComponent {}
+export class HomeComponent {
+  constructor(private readonly homeStateProvider: HomeStateProvider) {
+    this.homeStateProvider.setCategoriesMenu(true);
+  }
+}

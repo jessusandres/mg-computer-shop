@@ -48,7 +48,13 @@
         </div>
       </div>
       <div class="inline-flex items-center gap-3 lg:gap-4">
-        <button type="button" class="font-bold text-[13px] uppercase" routerLink="/login">
+        <button
+          data-tooltip-target="login-tooltip"
+          data-tooltip-placement="top"
+          type="button"
+          class="font-bold text-[13px] uppercase"
+          routerLink="/login"
+        >
           <span class="hidden lg:block">Ingresar / Registro</span>
           <img
             src="/icons/login.svg"
@@ -89,4 +95,5 @@
     </div>
   </div>
   <app-tooltip [tooltip-id]="'cart-tooltip'" [text]="'Carrito de compras'" />
+  <app-tooltip [tooltip-id]="'login-tooltip'" [text]="'Iniciar sesión'" />
 </header>

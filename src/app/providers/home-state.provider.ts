@@ -16,6 +16,7 @@ export class HomeStateProvider {
   private _products = Products;
 
   private _modalActive = new BehaviorSubject<boolean>(false);
+  private _categoriesMenu = new BehaviorSubject<boolean>(false);
   private _showSidebarMenu = new BehaviorSubject<boolean>(false);
   private _selectedCategoryId = new BehaviorSubject<number>(0);
   private _selectedCurrency = new BehaviorSubject<string>('PEN');
@@ -32,6 +33,7 @@ export class HomeStateProvider {
   productModal$ = this._productModal.asObservable();
   cartLateral$ = this._cartLateral.asObservable();
   cartProducts$ = this._cartProducts.asObservable();
+  categoriesMenu$ = this._categoriesMenu.asObservable();
 
   constructor() {
     this.fetchExchangeType(this._selectedCurrency.getValue());
@@ -39,10 +41,6 @@ export class HomeStateProvider {
     console.log('===> init??');
     loadStorageCart().then((cart) => {
       // this._cartProducts.next(loadStorageCart());
-      console.log({
-        cart,
-      });
-
       this._cartProducts.next(cart);
     });
   }
@@ -113,9 +111,12 @@ export class HomeStateProvider {
   }
 
   removeCartProduct(id: number) {
-    this._cartProducts.next(
-      this._cartProducts.getValue().filter((product) => product.id !== id),
-    );
+    const newCartItems = this._cartProducts
+      .getValue()
+      .filter((product) => product.id !== id);
+    this._cartProducts.next(newCartItems);
+
+    localStorage.setItem('cart', JSON.stringify(newCartItems));
   }
 
   get cartProductsTotal() {
@@ -130,6 +131,10 @@ export class HomeStateProvider {
       }, 0);
 
     return Math.round((cartTotalAMount + Number.EPSILON) * 100) / 100;
+  }
+
+  setCategoriesMenu(open: boolean) {
+    this._categoriesMenu.next(open);
   }
 
   get cartProducts() {

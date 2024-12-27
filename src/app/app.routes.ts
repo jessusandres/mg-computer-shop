@@ -3,7 +3,7 @@ import { Route, Routes, UrlSegment } from '@angular/router';
 /* Project */
 import { PageNotFoundComponent } from '@app/pages/page-not-found/page-not-found.component';
 import { HomeComponent } from '@app/pages/home/home.component';
-import { ProductItemComponent } from '@app/pages/product-item/product-item.component';
+import { ProductDetailComponent } from '@app/pages/product-detail/product-detail.component';
 import { PrimaryLayoutComponent } from '@app/layouts/primary-layout/primary-layout.component';
 
 export const routes: Routes = [
@@ -19,6 +19,10 @@ export const routes: Routes = [
       {
         path: '',
         component: HomeComponent,
+      },
+      {
+        path: 'products/:id',
+        component: ProductDetailComponent,
       },
       {
         path: 'about-us',
@@ -40,6 +44,13 @@ export const routes: Routes = [
           import('@app/pages/faq/faq.component').then((c) => c.FaqComponent),
       },
       {
+        path: 'store',
+        loadComponent: () =>
+          import('@app/pages/shopfront/shopfront.component').then(
+            (c) => c.ShopfrontComponent,
+          ),
+      },
+      {
         path: 'featured/:category-name',
         loadComponent: () =>
           import('@app/pages/featured/featured.component').then(
@@ -47,8 +58,11 @@ export const routes: Routes = [
           ),
       },
       {
-        path: 'shopfront/:categoryId/:subCategoryId/products',
-        component: ProductItemComponent,
+        path: 'shopfront/:category/:subCategory/products',
+        loadComponent: () =>
+          import('@app/pages/shopfront/shopfront.component').then(
+            (c) => c.ShopfrontComponent,
+          ),
       },
       {
         path: '**',

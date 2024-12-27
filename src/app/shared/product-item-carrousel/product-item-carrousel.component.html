@@ -1,4 +1,4 @@
-<div class="group">
+<div class="group" (click)="redirectToDetail()">
   <div class="relative overflow-hidden">
     <div
       class="absolute right-0 hidden transition-all duration-200 translate-x-12 opacity-0 lg:block group-hover:opacity-100 group-hover:translate-x-0"
@@ -29,8 +29,7 @@
         <app-tooltip [tooltip-id]="baseIdentifier+'-preview'" [text]="'Vista previa'" />
         <a
           (click)="setProductModal($event)"
-          routerLink="/"
-          class="size-[50px] bg-white flex justify-center items-center shadow-sm border-r"
+          class="cursor-pointer size-[50px] bg-white flex justify-center items-center shadow-sm border-r"
           [attr.data-tooltip-target]="baseIdentifier+'-preview'"
           data-tooltip-placement="left"
         >
@@ -52,6 +51,7 @@
       </div>
     </div>
     <div
+      (click)="stopButton($event)"
       class="prd-item-menu absolute inset-0 flex flex-col items-center justify-end gap-4 origin-bottom bg-white/90 {{displayMenu ? 'show' : 'hide'}}"
     >
       <button
@@ -84,7 +84,7 @@
             class="flex items-center gap-2 [&>*>span]:border [&>*>span]:border-gray-300 [&>*>span]:bg-white [&>*>span]:px-3 [&>*>span]:py-1 [&>*>span]:rounded-md mb-5 [&>*>span]:cursor-pointer [&>*>span:hover]:border-gray-300 [&>*>span:hover]:border-2 transition-all"
           >
             <!-- DISABLE WITH class="!opacity-60" -->
-            <li *ngFor="let warehouse of product.warehouses" (click)="setWarehouse(warehouse.id)">
+            <li *ngFor="let warehouse of product.warehouses" (click)="setWarehouse($event, warehouse.id)">
               <span class="{{selectedWarehouse === warehouse.id ? '!border-2 !border-black' : ''}}">
                 {{ warehouse.name }}
               </span>
@@ -165,7 +165,7 @@
       <ul
         class="flex flex-wrap gap-1 text-xs text-gray-400 uppercase mb-2 [&>*>a:hover]:text-primary-900 justify-center"
       >
-        <li *ngFor="let tag of product.tags"><a class="cursor-pointer">{{ tag.name }}</a></li>
+        <li (click)="filterTags($event, tag.id)" *ngFor="let tag of product.tags"><a class="cursor-pointer">{{ tag.name }}</a></li>
       </ul>
     </div>
     <div class="flex flex-col items-center">
@@ -173,7 +173,7 @@
        {{ priceText }}
       </span>
       <a
-        (click)="toggleMenu()"
+        (click)="toggleMenu($event)"
         class="cursor-pointer relative flex items-center justify-center gap-2 overflow-hidden text-[13px] font-semibold text-white uppercase transition rounded-full max-w-fit hover:bg-primary-950 bg-primary-900 group/cart before:content-cart before:absolute before:size-5 before:translate-y-full before:opacity-0 hover:before:translate-y-0 hover:before:opacity-100 before:transition-all before:duration-200 before:ease-in-out before:flex before:items-center before:justify-center flex-shrink-0"
       >
         <span

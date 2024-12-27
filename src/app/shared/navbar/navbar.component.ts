@@ -7,7 +7,7 @@ import {
   ViewChild,
 } from '@angular/core';
 import { CurrencyPipe, NgForOf, NgStyle } from '@angular/common';
-import { NavigationEnd, Router, RouterLink } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 /* Project */
 import { ArrowDownSvgComponent } from '@app/shared/icons/arrow-down-svg/arrow-down-svg.component';
@@ -49,11 +49,17 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly renderer: Renderer2,
     private homeStateProvider: HomeStateProvider,
   ) {
-    this.router.events.subscribe((value) => {
-      if (value instanceof NavigationEnd) {
-        this.displayMenu = router.url === '/';
-        this.isHome = router.url === '/';
-      }
+    this.homeStateProvider.categoriesMenu$.subscribe((display) => {
+      this.displayMenu = display;
+    });
+    this.router.events.subscribe(() => {
+      //   if (value instanceof NavigationEnd) {
+      //     console.log({
+      //       router,
+      //     });
+      //     this.displayMenu = router.url === '/';
+      this.isHome = router.url === '/';
+      // }
     });
 
     this.menus = this.homeStateProvider.menus;
@@ -105,6 +111,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleDisplayMenu() {
+    console.log('==> toggleDisplayMenu');
     if (!this.isHome) {
       this.displayMenu = !this.displayMenu;
     }

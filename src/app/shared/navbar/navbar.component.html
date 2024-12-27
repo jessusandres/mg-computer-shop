@@ -1,5 +1,5 @@
 <div
-  class="h-[53px] bg-primary-900 text-white lg:flex justify-center items-center text-[13px] uppercase font-bold">
+  class="h-[53px] bg-primary-900 text-white lg:flex justify-center items-center text-[13px] uppercase font-bold hidden">
   <div class="w-full px-4 mx-auto max-w-df">
     <div class="flex items-center justify-between">
       <div class="flex items-center sm:gap-5 lg:gap-10">
@@ -40,7 +40,7 @@
             class="bg-white text-sm px-3 py-1.5 rounded-md {{showCurrency ? 'rounded-t-md rounded-b-none': ''}}"
             (click)="setShowCurrency(!showCurrency)"
           >
-            {{ selectedCurrency.term }} <span class="hidden lg:block">, {{ selectedCurrency.symbol }}</span>
+            {{ selectedCurrency.term }}, {{ selectedCurrency.symbol }}
           </button>
           <div
             class="absolute inset-x-0 z-10"
@@ -52,7 +52,7 @@
               class="w-full p-3 bg-white border shadow rounded-b-md {{isLast ? '' : 'rounded-b-none'}} md:text-xs"
               (click)="setCurrency(currency.term)"
             >
-              {{ currency.term }} <span class="hidden lg:block">, {{ currency.symbol }}</span>
+              {{ currency.term }}, {{ currency.symbol }}
             </button>
           </div>
         </div>
@@ -61,9 +61,7 @@
           <span>Envíos</span>
         </div>
         <span class="pl-2 border-l border-gray-500 text-tinny md:text-xs">
-          <span class="hidden lg:block">
             T.C
-          </span>
           S/. {{ exchangeValue | currency : 'PEN' : '' : '1.2-2' }}
         </span>
       </div>

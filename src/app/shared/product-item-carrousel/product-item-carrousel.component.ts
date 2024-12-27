@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { NgForOf, NgIf } from '@angular/common';
-import { RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 /* Project */
 import { TProduct } from '@app/types';
@@ -11,7 +11,7 @@ import { productPrice, productSymbol } from '@app/helpers';
 @Component({
   selector: 'app-product-item-carrousel',
   standalone: true,
-  imports: [TooltipComponent, NgForOf, RouterLink, NgIf],
+  imports: [TooltipComponent, NgForOf, NgIf],
   templateUrl: './product-item-carrousel.component.html',
   styleUrl: './product-item-carrousel.component.scss',
 })
@@ -34,7 +34,10 @@ export class ProductItemCarrouselComponent implements OnInit {
   baseIdentifier: string = '';
   priceText!: string;
 
-  constructor(private readonly homeStateProvider: HomeStateProvider) {}
+  constructor(
+    private readonly router: Router,
+    private readonly homeStateProvider: HomeStateProvider,
+  ) {}
 
   get trimmedName() {
     const currentLength = this.product.name.length;
@@ -56,7 +59,8 @@ export class ProductItemCarrouselComponent implements OnInit {
     });
   }
 
-  toggleMenu() {
+  toggleMenu(event: Event) {
+    event.stopPropagation();
     this.displayMenu = !this.displayMenu;
   }
 
@@ -90,13 +94,29 @@ export class ProductItemCarrouselComponent implements OnInit {
     this.selectedWarehouse = 0;
   }
 
-  setWarehouse(id: number) {
+  setWarehouse(event: Event, id: number) {
+    event.stopPropagation();
     this.selectedWarehouse = id;
   }
 
   setProductModal(event: Event) {
     event.stopPropagation();
     this.homeStateProvider.setProductModal(this.product);
+  }
+
+  stopButton(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+
+  filterTags(event: Event, tag: number) {
+    event.preventDefault();
+    event.stopPropagation();
+    console.log({ tag });
+  }
+
+  async redirectToDetail() {
+    await this.router.navigate([`/products/${this.product.id}`]);
   }
 
   protected readonly Number = Number;

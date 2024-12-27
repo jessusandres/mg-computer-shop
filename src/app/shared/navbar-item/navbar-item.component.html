@@ -2,6 +2,7 @@
   class="{{isSelected ? 'bg-gray-100' : ''}}"
   (mouseenter)="setSelectedCategoryId()"
   (mouseleave)="removeSelectedCategoryId()"
+  (click)="itemClick($event)"
 >
   <div class="flex items-center px-[18px] py-2.5 font-semibold text-sm">
     <a class="flex items-center flex-grow gap-2">

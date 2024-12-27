@@ -5,6 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '@app/shared/header/header.component';
 import { SidebarMenuComponent } from '@app/shared/sidebar-menu/sidebar-menu.component';
 import { NavbarComponent } from '@app/shared/navbar/navbar.component';
+import { HomeStateProvider } from '@app/providers/home-state.provider';
 
 declare let gsap: any;
 
@@ -16,7 +17,12 @@ declare let gsap: any;
   styleUrl: './page-not-found.component.scss',
 })
 export class PageNotFoundComponent implements OnInit {
-  constructor(private router: Router) {}
+  constructor(
+    private router: Router,
+    private readonly homeStateProvider: HomeStateProvider,
+  ) {
+    this.homeStateProvider.setCategoriesMenu(false);
+  }
 
   ngOnInit() {
     gsap.set('svg', { visibility: 'visible' });

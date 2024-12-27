@@ -1,27 +1,24 @@
-.navbar-menu {
+.item-tab {
   @starting-style {
     opacity: 0;
     display: none;
-    transform: translateY(2.5rem);
+    transform: translateX(-50%);
   }
 
-
-  transform: translateY(0);
+  transform: translateX(0);
   transition-property: display, opacity, transform;
   transition-duration: .150s;
   transition-behavior: allow-discrete;
 }
 
-.navbar-menu.show {
+.item-tab.show{
   display: block;
-  opacity: 1;
 }
 
-.navbar-menu.hide {
-  display: none !important;
-  opacity: 0;
-}
-
-.cg-hidden {
+.item-tab.hide{
   display: none;
+}
+
+.demo-class-r {
+ margin-right: 1rem;
 }

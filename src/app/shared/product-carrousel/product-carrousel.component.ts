@@ -22,6 +22,11 @@ export class ProductCarrouselComponent implements OnInit {
   })
   key!: string;
 
+  @Input({
+    alias: 'maxSlides',
+  })
+  maxSlides?: number = 5;
+
   readonly products: TProduct[];
   swiper: any;
 
@@ -54,7 +59,7 @@ export class ProductCarrouselComponent implements OnInit {
             spaceBetween: 16,
           },
           1024: {
-            slidesPerView: 5,
+            slidesPerView: this.maxSlides,
             spaceBetween: 20,
           },
         },

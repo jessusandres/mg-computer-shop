@@ -41,4 +41,9 @@ export class NavbarItemComponent implements OnInit {
   removeSelectedCategoryId() {
     this.homeStateProvider.setSelectedCategoryId(0);
   }
+
+  itemClick(event: Event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
 }

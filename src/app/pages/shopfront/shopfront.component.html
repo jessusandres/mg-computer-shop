@@ -1,0 +1,462 @@
+<section class="bg-[#0A0A0A] text-white py-4 md:py-10 lg:py-14">
+  <div class="px-4 mx-auto max-w-df">
+    <h1
+      class="text-5xl md:text-[68px] font-semibold font-poppins text-center"
+    >
+      {{ pageName }}
+    </h1>
+  </div>
+</section>
+<section class="pt-10 pb-20">
+  <div class="px-4 mx-auto max-w-df">
+    <div class="flex gap-6">
+      <div
+        class="fixed inset-y-0 left-0 z-[60] w-64 px-5 pt-6 pb-4 overflow-y-scroll bg-white lg:w-1/4 lg:!block lg:relative lg:overflow-y-hidden lg:z-10"
+        x-show="filters"
+      >
+        <!--        x-transition:enter="transition ease-out duration-300"-->
+        <!--        x-transition:enter-start="opacity-0 -translate-x-96"-->
+        <!--        x-transition:leave="transition ease-in duration-300"-->
+        <!--        x-transition:leave-end="opacity-100 -translate-x-96"-->
+        <button
+          type="button"
+          class="absolute top-4 right-4"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18 18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+
+        <h5 class="font-poppins font-semibold text-[#333] uppercase mb-8">
+          Filtrar por precio
+        </h5>
+        <div class="relative w-full max-w-xl pb-8 mb-6 border-b">
+          <div>
+            <input
+              type="range"
+              [step]="steper"
+              class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none "
+              [min]="minRange"
+              [max]="maxForMinAllowed"
+              (input)="handleMinPrice($event)"
+              [value]="currentMin"
+              id="min-price-range"
+            />
+            <input
+              type="range"
+              [step]="steper"
+              [min]="minForMaxAllowed"
+              [max]="maxRange"
+              class="absolute z-20 w-full h-2 opacity-0 appearance-none cursor-pointer pointer-events-none "
+              (input)="handleMaxPrice($event)"
+              [value]="currentMax"
+              id="max-price-range"
+            />
+            <div class="relative z-10 h-0.5">
+              <div class="absolute top-0 bottom-0 left-0 right-0 z-10 bg-gray-200 rounded-md">
+              </div>
+              <div
+                class="absolute top-0 bottom-0 z-20 rounded-md bg-primary-700"
+                style="right: {{maxThumb}}%; left: {{minThumb}}%"
+              >
+                <!--                x-bind:style="'right:'+maxthumb+'%; left:'+minthumb+'%'"-->
+              </div>
+              <div class="absolute top-0 left-0 z-30 w-1 h-[15px] -mt-2 -ml-1 bg-primary-700 rounded-full"
+                   style="left: {{minThumb}}%">
+                <!--                x-bind:style="'left: '+minthumb+'%'"-->
+              </div>
+              <div class="absolute top-0 right-0 z-30 w-1 h-[15px] -mt-2 -mr-1 bg-primary-700 rounded-full"
+                   style="right: {{maxThumb}}%">
+                <!--                x-bind:style="'right: '+maxthumb+'%'"-->
+              </div>
+            </div>
+          </div>
+          <div class="flex flex-col items-center justify-between gap-4 mt-8 md:flex-row">
+            <div class="flex items-center">
+              precio: &nbsp;
+              <div class="font-semibold">
+                S/. {{ currentMin }}
+                <span x-text="minprice"></span>
+              </div>
+              &nbsp; — &nbsp;
+              <div class="font-semibold">
+                S/. {{ currentMax }}
+                <span x-text="maxprice"></span>
+              </div>
+            </div>
+            <button
+              type="button"
+              class="px-4 py-2 text-xs font-semibold text-gray-600 uppercase bg-gray-100 rounded-full hover:bg-gray-200"
+            >
+              Filtrar
+            </button>
+          </div>
+
+        </div>
+        <h5 class="font-poppins font-semibold text-[#333] uppercase mb-8">
+          FILTRAR POR ALMACÉN
+        </h5>
+        <div class="pb-8 mb-6 border-b">
+          <ul
+            class="space-y-3.5 overflow-y-auto max-h-56 scrollbar-thin scrollbar-thumb-gray-300 hover:scrollbar-thumb-gray-500 scrollbar-track-gray-100"
+          >
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Arequipa
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Cusco
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >1</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Huancayo
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >3</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Juliaca
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Lima
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Loreto
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Piura
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Tacna
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Tumbes
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Ayacucho
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Cajamarca
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+            <li>
+              <a
+                href="#"
+                class="group flex items-center justify-between text-sm text-[#777777] hover:text-[#333] transition-all duration-300"
+              >Callao
+                <span
+                  class="px-2 py-1 border border-gray-300 rounded-full text-xs text-[#777777] group-hover:bg-primary-700 group-hover:text-white transition-all duration-200"
+                >12</span
+                ></a
+              >
+            </li>
+          </ul>
+        </div>
+        <h5 class="font-poppins font-semibold text-[#333] uppercase mb-8">
+          PRODUCTOS TOP
+        </h5>
+        <div class="space-y-4 divide-y *:pt-4">
+          <div class="flex items-start gap-4" *ngFor="let i of Array(3)">
+            <a href="" class="flex-shrink-0">
+              <img
+                src="https://gamerbit.pe/wp-content/uploads/2021/06/CPILI710700F-430x430.jpg"
+                alt=""
+                class="object-contain w-16 h-16"
+              />
+            </a>
+            <div class="space-y-3">
+              <a href="#" class="text-sm font-medium"
+              >PROC. INTEL CORE I7-10700F 2.90 GHz, 16MB CACHE, TDP 65W
+              </a>
+              <span class="block text-lg font-semibold text-green-500"
+              >S/. 834.60 - $216.78</span
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="w-full lg:w-3/4">
+        <div
+          class="flex flex-col justify-between pb-6 mb-6 border-b md:items-center md:flex-row md:border-none md:pb-0"
+        >
+          <nav class="flex items-center space-x-2 text-sm">
+            <a
+              href="#"
+              class="text-gray-400 after:content-['/'] after:!text-[#333] after:ml-2"
+            >Inicio</a
+            >
+            <span class="text-[#333] font-semibold">Tienda</span>
+          </nav>
+          <div class="flex items-center gap-6">
+                <span class="text-sm text-gray-400"
+                >Mostrando 1-{{ currentRowsDisplayed }} de {{ totalRows }} resultados</span
+                >
+            <div class="items-center hidden gap-2 text-sm md:flex">
+              <span class="font-semibold">Mostrar:</span>
+
+
+              <p *ngFor="let aSize of availableSizes">
+
+                <a (click)="currentRowsDisplayed = aSize"
+                   class="cursor-pointer {{currentRowsDisplayed === aSize ? 'font-bold' : 'text-gray-500'}}">
+                  {{ aSize }}
+                </a>
+                <span class="text-gray-400">/</span>
+              </p>
+            </div>
+            <div class="items-center hidden gap-2 md:flex">
+              <button
+                type="button"
+                class="text-gray-400 {{grid  === 2 && '!text-[#333]'}}"
+                (click)="grid = 2"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 56 56"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M34.434 26.066h10.664c3 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.476-4.477 4.57v10.477c0 3.093 1.5 4.593 4.477 4.593m-23.532 0H21.59c2.976 0 4.476-1.5 4.476-4.593V10.996c0-3.094-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.476-4.476 4.57v10.477c0 3.093 1.5 4.593 4.476 4.593m0 23.508H21.59c2.976 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.5-4.57-4.476-4.57H10.902c-2.976 0-4.476 1.5-4.476 4.57v10.5c0 3.094 1.5 4.57 4.476 4.57m23.532 0h10.664c3 0 4.476-1.476 4.476-4.57v-10.5c0-3.07-1.476-4.57-4.476-4.57H34.434c-2.977 0-4.477 1.5-4.477 4.57v10.5c0 3.094 1.5 4.57 4.477 4.57"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="text-gray-400 {{grid  === 3 && '!text-[#333]'}}"
+                (click)="grid = 3"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 56 56"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M3.76 27.696h8.975c2.5 0 3.76-1.26 3.76-3.859V15.04c0-2.598-1.26-3.838-3.76-3.838H3.76C1.26 11.2 0 12.44 0 15.039v8.798c0 2.599 1.26 3.858 3.76 3.858m19.762 0h8.956c2.52 0 3.76-1.26 3.76-3.859V15.04c0-2.598-1.24-3.838-3.76-3.838h-8.956c-2.5 0-3.76 1.24-3.76 3.838v8.798c0 2.599 1.26 3.858 3.76 3.858m19.743 0h8.975c2.5 0 3.76-1.26 3.76-3.859V15.04c0-2.598-1.26-3.838-3.76-3.838h-8.975c-2.5 0-3.76 1.24-3.76 3.838v8.798c0 2.599 1.26 3.858 3.76 3.858M3.76 47.438h8.975c2.5 0 3.76-1.24 3.76-3.838v-8.818c0-2.579-1.26-3.839-3.76-3.839H3.76c-2.5 0-3.76 1.26-3.76 3.839V43.6c0 2.598 1.26 3.838 3.76 3.838m19.762 0h8.956c2.52 0 3.76-1.24 3.76-3.838v-8.818c0-2.579-1.24-3.839-3.76-3.839h-8.956c-2.5 0-3.76 1.26-3.76 3.839V43.6c0 2.598 1.26 3.838 3.76 3.838m19.743 0h8.975c2.5 0 3.76-1.24 3.76-3.838v-8.818c0-2.579-1.26-3.839-3.76-3.839h-8.975c-2.5 0-3.76 1.26-3.76 3.839V43.6c0 2.598 1.26 3.838 3.76 3.838"
+                  />
+                </svg>
+              </button>
+              <button
+                type="button"
+                class="text-gray-400 {{grid  === 4 && '!text-[#333]'}}"
+                (click)="grid = 4"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="20"
+                  height="20"
+                  viewBox="0 0 56 56"
+                >
+                  <path
+                    fill="currentColor"
+                    d="M5.008 17.957h3.89c1.477 0 2.016-.539 2.016-2.016v-3.89c0-1.477-.539-2.016-2.016-2.016h-3.89c-1.5 0-2.04.54-2.04 2.016v3.89c0 1.477.54 2.016 2.04 2.016m13.992 0h3.89c1.477 0 2.016-.539 2.016-2.016v-3.89c0-1.477-.539-2.016-2.015-2.016H19c-1.477 0-2.016.54-2.016 2.016v3.89c0 1.477.54 2.016 2.016 2.016m13.992 0h3.89c1.5 0 2.04-.539 2.04-2.016v-3.89c0-1.477-.54-2.016-2.04-2.016h-3.89c-1.476 0-2.015.54-2.015 2.016v3.89c0 1.477.539 2.016 2.015 2.016m14.016 0h3.89c1.477 0 2.016-.539 2.016-2.016v-3.89c0-1.477-.539-2.016-2.015-2.016h-3.891c-1.5 0-2.04.54-2.04 2.016v3.89c0 1.477.54 2.016 2.04 2.016M5.125 31.973h3.89c1.477 0 2.016-.54 2.016-2.04v-3.89c0-1.477-.539-2.016-2.015-2.016H5.125c-1.5 0-2.04.54-2.04 2.016v3.89c0 1.5.54 2.04 2.04 2.04m13.992 0h3.89c1.477 0 2.016-.54 2.016-2.04v-3.89c0-1.477-.539-2.016-2.015-2.016h-3.89c-1.477 0-2.016.54-2.016 2.016v3.89c0 1.5.539 2.04 2.015 2.04m13.992 0H37c1.5 0 2.04-.54 2.04-2.04v-3.89c0-1.477-.54-2.016-2.04-2.016h-3.89c-1.477 0-2.016.54-2.016 2.016v3.89c0 1.5.539 2.04 2.015 2.04m14.016 0h3.89c1.477 0 2.016-.54 2.016-2.04v-3.89c0-1.477-.539-2.016-2.015-2.016h-3.891c-1.5 0-2.04.54-2.04 2.016v3.89c0 1.5.54 2.04 2.04 2.04m-42 13.992h3.89c1.477 0 2.016-.54 2.016-2.016v-3.89c0-1.5-.539-2.04-2.015-2.04H5.125c-1.5 0-2.04.54-2.04 2.04v3.89c0 1.477.54 2.016 2.04 2.016m13.992 0h3.89c1.477 0 2.016-.54 2.016-2.016v-3.89c0-1.5-.539-2.04-2.015-2.04h-3.89c-1.477 0-2.016.54-2.016 2.04v3.89c0 1.477.539 2.016 2.015 2.016m13.992 0H37c1.5 0 2.04-.54 2.04-2.016v-3.89c0-1.5-.54-2.04-2.04-2.04h-3.89c-1.477 0-2.016.54-2.016 2.04v3.89c0 1.477.539 2.016 2.015 2.016m14.016 0h3.89c1.477 0 2.016-.54 2.016-2.016v-3.89c0-1.5-.539-2.04-2.015-2.04h-3.891c-1.5 0-2.04.54-2.04 2.04v3.89c0 1.477.54 2.016 2.04 2.016"
+                  />
+                </svg>
+              </button>
+            </div>
+            <select
+              name=""
+              class="hidden text-sm border-gray-200 rounded-md md:block"
+            >
+              <option value="">Ordenar por popularidad</option>
+              <option value="">Ordenar por precio</option>
+              <option value="">Ordenar por nombre</option>
+              <option value="">Ordenar por fecha</option>
+            </select>
+          </div>
+        </div>
+        <div class="flex items-center justify-between mb-5 lg:hidden">
+          <button
+            type="button"
+            class="inline-flex items-center gap-1.5 text-black text-tinny"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="2"
+              stroke="currentColor"
+              class="w-5 h-5"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"
+              />
+            </svg>
+            Filtros
+          </button>
+          <select name="" id="" class="text-sm border-gray-200 rounded-md">
+            <option value="">Ordenar por popularidad</option>
+            <option value="">Ordenar por precio</option>
+            <option value="">Ordenar por nombre</option>
+            <option value="">Ordenar por fecha</option>
+          </select>
+        </div>
+        <div
+          class="grid grid-cols-{{grid}} gap-{{grid}} transition-all origin-top gap-y-20 md:gap-y-6 animate-fade"
+        >
+          <app-product-item-carrousel [key]="'prd-1'" [product]="mockProduct"
+                                      *ngFor="let item of Array(currentRowsDisplayed)" />
+        </div>
+
+        <div class="flex justify-center mt-28 md:mt-12">
+          <nav>
+            <ul class="flex items-center h-8 -space-x-px text-sm">
+              <li>
+                <a
+                  (click)="changePage(currentPage - 1)"
+                  class="cursor-pointer flex items-center justify-center h-8 px-3 leading-tight text-gray-500 bg-white border border-gray-300 ms-0 border-e-0 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"
+                >
+                  <span class="sr-only">Anterior</span>
+                  <svg
+                    class="w-2.5 h-2.5 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 6 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M5 1 1 5l4 4"
+                    />
+                  </svg>
+                </a>
+              </li>
+              <li *ngFor="let i of Array(totalPages); index as ind" (click)="changePage(ind + 1)">
+                <a
+                  aria-current="page"
+                  class="cursor-pointer z-10 flex items-center justify-center h-8 px-3 leading-tight {{ currentPage === ind + 1 ? activeClass : normalClass }}"
+                >
+                  {{ ind + 1 }}
+                </a>
+              </li>
+              <li>
+                <a
+                  (click)="changePage(currentPage + 1)"
+                  class="cursor-pointer flex items-center justify-center h-8 px-3 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"
+                >
+                  <span class="sr-only">Siguiente</span>
+                  <svg
+                    class="w-2.5 h-2.5 rtl:rotate-180"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 6 10"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 9 4-4-4-4"
+                    />
+                  </svg>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
