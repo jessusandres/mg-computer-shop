@@ -1,6 +1,6 @@
 <li class="{{isSelected ?  'font-bold' : 'font-medium'}}" (mouseenter)="markAsSelected()" (mouseleave)="removeSelected()">
   <a
-    routerLink="/shopfront/{{subCategory.categoryId}}/{{subCategory.id}}/products"
+    routerLink="/shopfront/{{subCategory.categoryId}}/{{subCategory.id}}"
     routerLinkActive="text-primary-600 font-semibold"
   >
     {{ subCategory.name }}

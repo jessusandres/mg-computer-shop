@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+
+/* Project */
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-faq',
@@ -9,7 +11,7 @@ import { HomeStateProvider } from '@app/providers/home-state.provider';
   styleUrl: './faq.component.scss',
 })
 export class FaqComponent {
-  constructor(private readonly homeStateProvider: HomeStateProvider) {
-    this.homeStateProvider.setCategoriesMenu(false);
+  constructor(private readonly menusStateProvider: MenusStateProvider) {
+    this.menusStateProvider.setCategoriesMenu(false);
   }
 }

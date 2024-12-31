@@ -4,7 +4,7 @@ import { Component, Input, OnInit } from '@angular/core';
 /* Project */
 import { ProductItemCarrouselComponent } from '@app/shared/product-item-carrousel/product-item-carrousel.component';
 import { TProduct } from '@app/types';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+import { ProductsStateProvider } from '@app/providers/products-state.provider';
 
 declare let Swiper: any;
 
@@ -30,8 +30,8 @@ export class ProductCarrouselComponent implements OnInit {
   readonly products: TProduct[];
   swiper: any;
 
-  constructor(private readonly homeStateProvider: HomeStateProvider) {
-    this.products = this.homeStateProvider.products;
+  constructor(private readonly productsStateProvider: ProductsStateProvider) {
+    this.products = this.productsStateProvider.products;
   }
 
   ngOnInit() {

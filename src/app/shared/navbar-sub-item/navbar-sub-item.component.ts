@@ -2,8 +2,8 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 /* Project */
-import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { TSubCategory } from '@app/types';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-navbar-sub-item',
@@ -23,7 +23,7 @@ export class NavbarSubItemComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private homeStateProvider: HomeStateProvider,
+    private menusStateProvider: MenusStateProvider,
   ) {}
 
   ngOnInit() {
@@ -31,9 +31,11 @@ export class NavbarSubItemComponent implements OnInit {
 
     if (
       currentRoute ===
-      `/shopfront/${this.subCategory.categoryId}/${this.subCategory.id}/products`
+      `/shopfront/${this.subCategory.categoryId}/${this.subCategory.id}`
     ) {
-      this.homeStateProvider.setSelectedCategoryId(this.subCategory.categoryId);
+      this.menusStateProvider.setSelectedCategoryId(
+        this.subCategory.categoryId,
+      );
     }
   }
 

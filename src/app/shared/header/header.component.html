@@ -1,3 +1,5 @@
+
+
 <header class="pt-[5px] border-b">
   <div class="px-4 mx-auto max-w-df">
     <div class="h-16 lg:h-[105px] flex items-center gap-4 justify-between">
@@ -49,12 +51,54 @@
       </div>
       <div class="inline-flex items-center gap-3 lg:gap-4">
         <button
+          *ngIf="user"
+          id="dropdownUserAvatarButton"
+          data-dropdown-toggle="dropdownAvatar" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+          type="button"
+        >
+          <span class="sr-only">Open user menu</span>
+          <img *ngIf="user?.avatar" class="w-8 h-8 rounded-full" [height]="40" [width]="40" [ngSrc]="user.avatar || ''" alt="user photo">
+          <span *ngIf="!user?.avatar" class="text-white w-8 h-8 rounded-full" style="align-content: center">
+            {{initials}}
+          </span>
+        </button>
+
+        <!-- Dropdown menu -->
+        <div id="dropdownAvatar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+          <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+            <div data-tooltip-target="full-name-tooltip" data-tooltip-placement="top">
+              {{ user?.name }}
+            </div>
+            <div class="font-medium truncate" data-tooltip-target="email-tooltip" data-tooltip-placement="bottom">
+              {{user?.email}}
+            </div>
+          </div>
+          <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownUserAvatarButton">
+            <li>
+              <a class="disabled block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">
+                Ajustes
+              </a>
+            </li>
+          </ul>
+          <div class="py-2">
+            <a
+              class="cursor-pointer block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+              (click)="logout()"
+            >
+              Salir
+            </a>
+          </div>
+        </div>
+
+        <button
+          *ngIf="!user"
           data-tooltip-target="login-tooltip"
           data-tooltip-placement="top"
           type="button"
           class="font-bold text-[13px] uppercase"
-          routerLink="/login"
+          (click)="login()"
         >
+          <!--          routerLink="/login"-->
           <span class="hidden lg:block">Ingresar / Registro</span>
           <img
             src="/icons/login.svg"
@@ -96,4 +140,7 @@
   </div>
   <app-tooltip [tooltip-id]="'cart-tooltip'" [text]="'Carrito de compras'" />
   <app-tooltip [tooltip-id]="'login-tooltip'" [text]="'Iniciar sesión'" />
+  <app-tooltip [tooltip-id]="'email-tooltip'" [text]="user?.email || ''" />
+  <app-tooltip [tooltip-id]="'full-name-tooltip'" [text]="user?.fullName || ''" />
 </header>
+

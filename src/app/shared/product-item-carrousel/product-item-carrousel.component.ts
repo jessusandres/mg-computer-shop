@@ -5,8 +5,10 @@ import { Router } from '@angular/router';
 /* Project */
 import { TProduct } from '@app/types';
 import { TooltipComponent } from '@app/shared/tooltip/tooltip.component';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { productPrice, productSymbol } from '@app/helpers';
+import { CurrencyStateProvider } from '@app/providers/currency-state.provider';
+import { ProductsStateProvider } from '@app/providers/products-state.provider';
+import { CartStateProvider } from '@app/providers/cart-state.provider';
 
 @Component({
   selector: 'app-product-item-carrousel',
@@ -36,7 +38,9 @@ export class ProductItemCarrouselComponent implements OnInit {
 
   constructor(
     private readonly router: Router,
-    private readonly homeStateProvider: HomeStateProvider,
+    private readonly cartStateProvider: CartStateProvider,
+    private readonly currencyStateProvider: CurrencyStateProvider,
+    private readonly productsStateProvider: ProductsStateProvider,
   ) {}
 
   get trimmedName() {
@@ -52,7 +56,7 @@ export class ProductItemCarrouselComponent implements OnInit {
   ngOnInit() {
     this.baseIdentifier = `${this.key}-product-${this.product.id}`;
 
-    this.homeStateProvider.selectedCurrency$.subscribe((currency) => {
+    this.currencyStateProvider.selectedCurrency$.subscribe((currency) => {
       this.currency = currency;
       this.priceText =
         productSymbol(currency) + productPrice(currency, this.product);
@@ -76,7 +80,7 @@ export class ProductItemCarrouselComponent implements OnInit {
       warehouse: this.selectedWarehouse,
     });
 
-    this.homeStateProvider.addProductToCart(
+    this.cartStateProvider.addProductToCart(
       {
         id: this.product.id,
         quantity: 1,
@@ -101,7 +105,7 @@ export class ProductItemCarrouselComponent implements OnInit {
 
   setProductModal(event: Event) {
     event.stopPropagation();
-    this.homeStateProvider.setProductModal(this.product);
+    this.productsStateProvider.setProductModal(this.product);
   }
 
   stopButton(event: Event) {

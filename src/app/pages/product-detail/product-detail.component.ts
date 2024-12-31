@@ -1,8 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NgIf } from '@angular/common';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+
+/* Project */
 import { ProductCarrouselComponent } from '@app/shared/product-carrousel/product-carrousel.component';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-product-detail',
@@ -23,13 +25,13 @@ export class ProductDetailComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private readonly homeStateProvider: HomeStateProvider,
+    private readonly menusStateProvider: MenusStateProvider,
   ) {
     const categoryId = this.route.snapshot.paramMap.get('categoryId');
     const subCategoryId = this.route.snapshot.paramMap.get('subCategoryId');
 
     this.mockCall(categoryId!, subCategoryId!);
-    this.homeStateProvider.setCategoriesMenu(true);
+    this.menusStateProvider.setCategoriesMenu(true);
 
     window.onscroll = () => {
       this.scrollPanel = window.scrollY > 500;

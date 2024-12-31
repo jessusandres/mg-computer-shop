@@ -3,8 +3,8 @@ import { NgForOf, NgIf } from '@angular/common';
 
 /* Project */
 import { TCategory } from '@app/types';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { NavbarSubItemComponent } from '@app/shared/navbar-sub-item/navbar-sub-item.component';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-navbar-item',
@@ -22,11 +22,11 @@ export class NavbarItemComponent implements OnInit {
   isSelected!: boolean;
   protected readonly Array = Array;
 
-  constructor(private homeStateProvider: HomeStateProvider) {}
+  constructor(private menusStateProvider: MenusStateProvider) {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.homeStateProvider.selectedCategory$.subscribe(
+      this.menusStateProvider.selectedCategory$.subscribe(
         (selectedCategoryId) => {
           this.isSelected = selectedCategoryId === this.category.id;
         },
@@ -35,11 +35,11 @@ export class NavbarItemComponent implements OnInit {
   }
 
   setSelectedCategoryId() {
-    this.homeStateProvider.setSelectedCategoryId(this.category.id);
+    this.menusStateProvider.setSelectedCategoryId(this.category.id);
   }
 
   removeSelectedCategoryId() {
-    this.homeStateProvider.setSelectedCategoryId(0);
+    this.menusStateProvider.setSelectedCategoryId(0);
   }
 
   itemClick(event: Event) {

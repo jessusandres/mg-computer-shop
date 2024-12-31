@@ -12,11 +12,11 @@
 }
 
 .cart-modal.show {
-  display: block;
+  display: block !important;
   opacity: 1;
 }
 
 .cart-modal.hide {
-  display: none;
+  display: none !important;
   opacity: 0;
 }

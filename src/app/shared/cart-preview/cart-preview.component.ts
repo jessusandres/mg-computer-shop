@@ -12,6 +12,9 @@ import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { TProductCart } from '@app/types';
 import { NgForOf } from '@angular/common';
 import { productPrice, productSymbol } from '@app/helpers';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
+import { CurrencyStateProvider } from '@app/providers/currency-state.provider';
+import { CartStateProvider } from '@app/providers/cart-state.provider';
 
 @Component({
   selector: 'cart-preview',
@@ -31,6 +34,9 @@ export class CartPreviewComponent implements OnDestroy {
   constructor(
     private renderer: Renderer2,
     private readonly homeStateProvider: HomeStateProvider,
+    private readonly menusStateProvider: MenusStateProvider,
+    private readonly currencyStateProvider: CurrencyStateProvider,
+    private readonly cartStateProvider: CartStateProvider,
   ) {
     this.outsideListener = this.renderer.listen(
       'window',
@@ -38,15 +44,15 @@ export class CartPreviewComponent implements OnDestroy {
       this.outsideCallback.bind(this),
     );
 
-    this.homeStateProvider.selectedCurrency$.subscribe((currency) => {
+    this.currencyStateProvider.selectedCurrency$.subscribe((currency) => {
       this.currency = currency;
     });
 
-    this.homeStateProvider.cartLateral$.subscribe((display) => {
+    this.menusStateProvider.cartLateral$.subscribe((display) => {
       this.display = display;
     });
 
-    this.homeStateProvider.cartProducts$.subscribe(
+    this.cartStateProvider.cartProducts$.subscribe(
       (cartProducts: TProductCart[]) => {
         this.cartProducts = cartProducts;
       },
@@ -54,7 +60,7 @@ export class CartPreviewComponent implements OnDestroy {
   }
 
   closeCart() {
-    this.homeStateProvider.closeLateralCart();
+    this.menusStateProvider.closeLateralCart();
   }
 
   outsideCallback(event: Event) {
@@ -64,11 +70,11 @@ export class CartPreviewComponent implements OnDestroy {
   }
 
   removeCartProduct(productId: number) {
-    this.homeStateProvider.removeCartProduct(productId);
+    this.cartStateProvider.removeCartProduct(productId);
   }
 
   get cartProductsTotal(): number {
-    return this.homeStateProvider.cartProductsTotal;
+    return this.cartStateProvider.cartProductsTotal;
   }
 
   ngOnDestroy() {

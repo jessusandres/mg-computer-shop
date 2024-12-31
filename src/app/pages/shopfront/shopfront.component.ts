@@ -1,20 +1,23 @@
 import { Component } from '@angular/core';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 
 /* Project */
-import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { ProductItemCarrouselComponent } from '@app/shared/product-item-carrousel/product-item-carrousel.component';
 import { TProduct } from '@app/types';
+import { ActivatedRoute } from '@angular/router';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-shopfront',
   standalone: true,
-  imports: [NgForOf, ProductItemCarrouselComponent],
+  imports: [NgForOf, ProductItemCarrouselComponent, NgIf],
   templateUrl: './shopfront.component.html',
   styleUrl: './shopfront.component.scss',
 })
 export class ShopfrontComponent {
-  pageName = 'Tienda';
+  pageName = '';
+
+  loading = true;
 
   activeClass = 'text-white border border-primary-900 bg-primary-900';
   normalClass =
@@ -29,7 +32,7 @@ export class ShopfrontComponent {
 
   availableSizes = [9, 12, 18, 24];
 
-  steper = 50;
+  stepper = 50;
 
   maxRange = 7900;
   minRange = 100;
@@ -93,11 +96,33 @@ export class ShopfrontComponent {
     stock: 10,
   };
 
-  constructor(private readonly homeStateProvider: HomeStateProvider) {
-    this.homeStateProvider.setCategoriesMenu(false);
+  protected readonly Array = Array;
+
+  constructor(
+    private readonly menusStateProvider: MenusStateProvider,
+    private readonly route: ActivatedRoute,
+  ) {
+    // const dynamic = this.route.snapshot.data['dynamic'];
+    // const tags = this.route.snapshot.data['tags'];
+
+    const category = this.route.snapshot.paramMap.get('category') || '';
+    const subCategory = this.route.snapshot.paramMap.get('sub-category') || '';
+
+    this.pageName = route.snapshot.data['tags'];
+    this.menusStateProvider.setCategoriesMenu(false);
+
+    this.fetchProducts(category, subCategory);
   }
 
-  protected readonly Array = Array;
+  fetchProducts(category: string, subCategory?: string) {
+    console.log({
+      category,
+      subCategory,
+    });
+    setTimeout(() => {
+      this.loading = false;
+    }, 1000);
+  }
 
   changePage(page: number) {
     if (page >= 1 && page <= this.totalPages) {
@@ -108,7 +133,6 @@ export class ShopfrontComponent {
 
   handleMinPrice(event: any) {
     this.currentMin = +event.target['value'];
-    console.log('==> handleMinPrice', this.currentMin);
 
     this.maxForMinAllowed = Math.max(this.currentMin, this.currentMax - 500);
 
@@ -119,7 +143,6 @@ export class ShopfrontComponent {
 
   handleMaxPrice(event: any) {
     this.currentMax = +event.target['value'];
-    console.log('==> handleMaxPrice', this.currentMax);
 
     this.minForMaxAllowed = Math.min(this.currentMax, this.currentMin + 500);
 
@@ -127,9 +150,5 @@ export class ShopfrontComponent {
       100 -
       ((this.currentMax - this.minRange) / (this.maxRange - this.minRange)) *
         100;
-  }
-
-  handleDrag() {
-    console.log('===> handleDrag');
   }
 }

@@ -21,6 +21,10 @@ import {
 import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { Payments, TProduct } from '@app/types';
 import { productPrice, productSymbol } from '@app/helpers';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
+import { ProductsStateProvider } from '@app/providers/products-state.provider';
+import { CurrencyStateProvider } from '@app/providers/currency-state.provider';
+import { CartStateProvider } from '@app/providers/cart-state.provider';
 
 @Component({
   selector: 'product-modal',
@@ -42,6 +46,10 @@ export class ProductModalComponent implements OnDestroy, OnInit {
     private readonly router: Router,
     private renderer: Renderer2,
     private readonly homeStateProvider: HomeStateProvider,
+    private readonly menusStateProvider: MenusStateProvider,
+    private readonly productsStateProvider: ProductsStateProvider,
+    private readonly currencyStateProvider: CurrencyStateProvider,
+    private readonly cartStateProvider: CartStateProvider,
     private readonly formBuilder: FormBuilder,
   ) {
     this.outsideListener = this.renderer.listen(
@@ -52,11 +60,11 @@ export class ProductModalComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.homeStateProvider.selectedCurrency$.subscribe((currency) => {
+    this.currencyStateProvider.selectedCurrency$.subscribe((currency) => {
       this.currency = currency;
     });
 
-    this.homeStateProvider.productModal$.subscribe((product) => {
+    this.productsStateProvider.productModal$.subscribe((product) => {
       this.product = product;
 
       if (product) {
@@ -99,7 +107,7 @@ export class ProductModalComponent implements OnDestroy, OnInit {
   }
 
   closeModal() {
-    this.homeStateProvider.setProductModal(undefined);
+    this.productsStateProvider.setProductModal(undefined);
   }
 
   outsideCallback(event: Event) {
@@ -113,7 +121,7 @@ export class ProductModalComponent implements OnDestroy, OnInit {
       await this.router.navigate([`/products/${this.product.id}`]);
     }
 
-    this.homeStateProvider.setProductModal(undefined);
+    this.productsStateProvider.setProductModal(undefined);
   }
 
   subtractOne() {
@@ -151,7 +159,7 @@ export class ProductModalComponent implements OnDestroy, OnInit {
       });
       const formData = this.cartForm.getRawValue();
 
-      this.homeStateProvider.addProductToCart(
+      this.cartStateProvider.addProductToCart(
         {
           id: this.product.id,
           quantity: formData.cartAmount,
@@ -165,8 +173,8 @@ export class ProductModalComponent implements OnDestroy, OnInit {
         true,
       );
 
-      this.homeStateProvider.setProductModal(undefined);
-      this.homeStateProvider.openLateralCart();
+      this.productsStateProvider.setProductModal(undefined);
+      this.menusStateProvider.openLateralCart();
     }
   }
 

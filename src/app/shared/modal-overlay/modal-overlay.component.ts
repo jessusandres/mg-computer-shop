@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 
 /* Project */
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+import { ProductsStateProvider } from '@app/providers/products-state.provider';
 
 @Component({
   selector: 'modal-overlay',
@@ -13,8 +13,8 @@ import { HomeStateProvider } from '@app/providers/home-state.provider';
 export class ModalOverlayComponent {
   display = false;
 
-  constructor(private readonly homeStateProvider: HomeStateProvider) {
-    this.homeStateProvider.modalActive$.subscribe((value) => {
+  constructor(private readonly productsStateProvider: ProductsStateProvider) {
+    this.productsStateProvider.modalActive$.subscribe((value) => {
       this.display = value;
     });
   }

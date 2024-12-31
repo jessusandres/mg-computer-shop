@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 
 import { TSubCategory } from '@app/types';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-sidebar-menu-sub-item',
@@ -20,7 +20,7 @@ export class SidebarMenuSubItemComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private homeStateProvider: HomeStateProvider,
+    private menusStateProvider: MenusStateProvider,
   ) {}
 
   ngOnInit() {
@@ -30,7 +30,9 @@ export class SidebarMenuSubItemComponent implements OnInit {
       currentRoute ===
       `/shopfront/${this.subCategory.categoryId}/${this.subCategory.id}/products`
     ) {
-      this.homeStateProvider.setSelectedCategoryId(this.subCategory.categoryId);
+      this.menusStateProvider.setSelectedCategoryId(
+        this.subCategory.categoryId,
+      );
     }
   }
 }

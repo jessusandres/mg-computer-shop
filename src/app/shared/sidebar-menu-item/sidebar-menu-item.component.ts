@@ -3,8 +3,8 @@ import { NgForOf, NgIf } from '@angular/common';
 
 /* Project */
 import { TCategory } from '@app/types';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { SidebarMenuSubItemComponent } from '@app/shared/sidebar-menu-sub-item/sidebar-menu-sub-item.component';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-sidebar-menu-item',
@@ -23,11 +23,11 @@ export class SidebarMenuItemComponent implements OnInit {
   isSelected!: boolean;
   protected readonly Array = Array;
 
-  constructor(private homeStateProvider: HomeStateProvider) {}
+  constructor(private menusStateProvider: MenusStateProvider) {}
 
   ngOnInit() {
     setTimeout(() => {
-      this.homeStateProvider.selectedCategory$.subscribe(
+      this.menusStateProvider.selectedCategory$.subscribe(
         (selectedCategoryId) => {
           this.isSelected = selectedCategoryId === this.category.id;
         },
@@ -36,11 +36,11 @@ export class SidebarMenuItemComponent implements OnInit {
   }
 
   setSelectedCategoryId() {
-    this.homeStateProvider.setSelectedCategoryId(this.category.id);
+    this.menusStateProvider.setSelectedCategoryId(this.category.id);
   }
 
   handleRouter(id: number) {
     console.log('==> pushing to route:', this.category.id, id);
-    this.homeStateProvider.setSidebarMenu(false);
+    this.menusStateProvider.setSidebarMenu(false);
   }
 }

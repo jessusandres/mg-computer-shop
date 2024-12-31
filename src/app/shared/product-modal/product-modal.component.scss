@@ -12,7 +12,7 @@
 }
 
 .product-modal.show {
-  display: block;
+  display: block !important;
   opacity: 1;
 }
 

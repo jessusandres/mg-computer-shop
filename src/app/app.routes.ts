@@ -5,12 +5,20 @@ import { PageNotFoundComponent } from '@app/pages/page-not-found/page-not-found.
 import { HomeComponent } from '@app/pages/home/home.component';
 import { ProductDetailComponent } from '@app/pages/product-detail/product-detail.component';
 import { PrimaryLayoutComponent } from '@app/layouts/primary-layout/primary-layout.component';
+import { TAGS } from '@app/helpers';
 
 export const routes: Routes = [
   {
     path: 'login',
     loadComponent: () =>
       import('@app/pages/login/login.component').then((c) => c.LoginComponent),
+  },
+  {
+    path: 'logout',
+    loadComponent: () =>
+      import('@app/pages/logout/logout.component').then(
+        (c) => c.LogoutComponent,
+      ),
   },
   {
     path: '',
@@ -45,20 +53,31 @@ export const routes: Routes = [
       },
       {
         path: 'store',
+        data: {
+          tags: TAGS.STORE,
+        },
         loadComponent: () =>
           import('@app/pages/shopfront/shopfront.component').then(
             (c) => c.ShopfrontComponent,
           ),
       },
       {
-        path: 'featured/:category-name',
+        path: 'featured/:category',
+        data: {
+          tags: TAGS.FEATURED,
+          dynamic: true,
+        },
         loadComponent: () =>
-          import('@app/pages/featured/featured.component').then(
-            (c) => c.FeaturedComponent,
+          import('@app/pages/shopfront/shopfront.component').then(
+            (c) => c.ShopfrontComponent,
           ),
       },
       {
-        path: 'shopfront/:category/:subCategory/products',
+        path: 'shopfront/:category/:sub-category',
+        data: {
+          tags: TAGS.PRODUCTS,
+          dynamic: true,
+        },
         loadComponent: () =>
           import('@app/pages/shopfront/shopfront.component').then(
             (c) => c.ShopfrontComponent,
@@ -67,12 +86,7 @@ export const routes: Routes = [
       {
         path: '**',
         component: PageNotFoundComponent,
-        canMatch: [
-          (_: Route, segments: UrlSegment[]) => {
-            console.log('===> MATCH NOT FOUND', segments, segments.length);
-            return !!segments.length;
-          },
-        ],
+        canMatch: [(_: Route, segments: UrlSegment[]) => !!segments.length],
       },
     ],
   },

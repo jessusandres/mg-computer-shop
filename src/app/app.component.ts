@@ -6,6 +6,7 @@ import { initFlowbite } from 'flowbite';
 
 /* Project */
 import { HomeStateProvider } from './providers/home-state.provider';
+import { LocalAuthService } from '@app/services/local-auth.service';
 
 @Component({
   selector: 'app-root',
@@ -16,9 +17,13 @@ import { HomeStateProvider } from './providers/home-state.provider';
   providers: [HomeStateProvider],
 })
 export class AppComponent {
+  appName = import.meta.env['NG_APP_NAME'];
   title = 'mg-computer-shop';
 
-  constructor() {}
+  constructor(private readonly localAuthService: LocalAuthService) {
+    console.log({ msg: `Welcome ${this.appName}` });
+    this.localAuthService.fillUser();
+  }
 
   ngOnInit(): void {
     initFlowbite();

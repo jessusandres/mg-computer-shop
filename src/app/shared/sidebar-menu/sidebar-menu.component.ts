@@ -12,6 +12,7 @@ import { NgForOf } from '@angular/common';
 import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { TCategory } from '@app/types';
 import { SidebarMenuItemComponent } from '../sidebar-menu-item/sidebar-menu-item.component';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 @Component({
   selector: 'app-sidebar-menu',
@@ -32,8 +33,9 @@ export class SidebarMenuComponent implements OnDestroy, OnInit {
   constructor(
     private readonly renderer: Renderer2,
     readonly homeStateProvider: HomeStateProvider,
+    readonly menusStateProvider: MenusStateProvider,
   ) {
-    this.categories = this.homeStateProvider.categories;
+    this.categories = this.menusStateProvider.categories;
 
     this.outsideListener = this.renderer.listen(
       'window',
@@ -43,13 +45,15 @@ export class SidebarMenuComponent implements OnDestroy, OnInit {
   }
 
   ngOnInit() {
-    this.homeStateProvider.showSidebarMenu$.subscribe((showSidebarMenu) => {
+    this.menusStateProvider.showSidebarMenu$.subscribe((showSidebarMenu) => {
       this.showSidebarMenu = showSidebarMenu;
     });
 
-    this.homeStateProvider.selectedCategory$.subscribe((selectedCategoryId) => {
-      this.selectedCategoryId = selectedCategoryId;
-    });
+    this.menusStateProvider.selectedCategory$.subscribe(
+      (selectedCategoryId) => {
+        this.selectedCategoryId = selectedCategoryId;
+      },
+    );
   }
 
   ngOnDestroy() {
@@ -59,6 +63,6 @@ export class SidebarMenuComponent implements OnDestroy, OnInit {
   outsideCallback(event: Event) {
     const outside = !this.sidebarMenuRef.nativeElement.contains(event.target);
 
-    if (outside) this.homeStateProvider.setSidebarMenu(false);
+    if (outside) this.menusStateProvider.setSidebarMenu(false);
   }
 }

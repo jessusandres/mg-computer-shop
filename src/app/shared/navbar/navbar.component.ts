@@ -15,6 +15,8 @@ import { DeliverySvgComponent } from '@app/shared/icons/delivery-svg/delivery-sv
 import { HomeStateProvider } from '@app/providers/home-state.provider';
 import { TCategory, TCurrency, TMenu } from '@app/types';
 import { NavbarItemComponent } from '@app/shared/navbar-item/navbar-item.component';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
+import { CurrencyStateProvider } from '@app/providers/currency-state.provider';
 
 @Component({
   selector: 'app-navbar',
@@ -48,8 +50,10 @@ export class NavbarComponent implements OnInit, OnDestroy {
     private readonly router: Router,
     private readonly renderer: Renderer2,
     private homeStateProvider: HomeStateProvider,
+    private menusStateProvider: MenusStateProvider,
+    private currencyStateProvider: CurrencyStateProvider,
   ) {
-    this.homeStateProvider.categoriesMenu$.subscribe((display) => {
+    this.menusStateProvider.categoriesMenu$.subscribe((display) => {
       this.displayMenu = display;
     });
     this.router.events.subscribe(() => {
@@ -62,8 +66,8 @@ export class NavbarComponent implements OnInit, OnDestroy {
       // }
     });
 
-    this.menus = this.homeStateProvider.menus;
-    this.categories = this.homeStateProvider.categories;
+    this.menus = this.menusStateProvider.menus;
+    this.categories = this.menusStateProvider.categories;
     // this.currencies = this.homeStateProvider.currencies;
 
     this.outsideListener = this.renderer.listen(
@@ -74,18 +78,18 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.homeStateProvider.selectedCurrency$.subscribe((currencyTerm) => {
-      this.currencies = this.homeStateProvider.currencies.filter(
+    this.currencyStateProvider.selectedCurrency$.subscribe((currencyTerm) => {
+      this.currencies = this.currencyStateProvider.currencies.filter(
         (c) => c.term !== currencyTerm,
       );
 
       this.selectedCurrency =
-        this.homeStateProvider.currencies.find(
+        this.currencyStateProvider.currencies.find(
           (c) => c.term === currencyTerm,
         ) || this.currencies[0];
     });
 
-    this.homeStateProvider.exchangeValue$.subscribe((exchangeValue) => {
+    this.currencyStateProvider.exchangeValue$.subscribe((exchangeValue) => {
       this.exchangeValue = exchangeValue;
     });
   }
@@ -100,7 +104,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   setCurrency(currency: string) {
     this.showCurrency = false;
-    this.homeStateProvider.setSelectedCurrency(currency);
+    this.currencyStateProvider.setSelectedCurrency(currency);
     // this.showCurrency = !this.showCurrency;
   }
 
@@ -111,7 +115,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
   }
 
   toggleDisplayMenu() {
-    console.log('==> toggleDisplayMenu');
     if (!this.isHome) {
       this.displayMenu = !this.displayMenu;
     }

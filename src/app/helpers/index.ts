@@ -67,3 +67,9 @@ export const loadStorageCart = async (): Promise<TProductCart[]> => {
     return safeCart;
   }
 };
+
+export enum TAGS {
+  STORE = 'TIENDA',
+  FEATURED = 'DESTACADOS EN ',
+  PRODUCTS = 'PRODUCTOS',
+}

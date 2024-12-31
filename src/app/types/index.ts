@@ -11,3 +11,4 @@ export {
 export type { TMenu } from './menu.type';
 export type { TCurrency } from './currency.type';
 export type { TSwiper } from './swiper.type';
+export type { TUser } from './user.type';

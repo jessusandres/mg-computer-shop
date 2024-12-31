@@ -5,7 +5,7 @@ import { Router, RouterLink } from '@angular/router';
 import { HeaderComponent } from '@app/shared/header/header.component';
 import { SidebarMenuComponent } from '@app/shared/sidebar-menu/sidebar-menu.component';
 import { NavbarComponent } from '@app/shared/navbar/navbar.component';
-import { HomeStateProvider } from '@app/providers/home-state.provider';
+import { MenusStateProvider } from '@app/providers/menus-state.provider';
 
 declare let gsap: any;
 
@@ -19,9 +19,9 @@ declare let gsap: any;
 export class PageNotFoundComponent implements OnInit {
   constructor(
     private router: Router,
-    private readonly homeStateProvider: HomeStateProvider,
+    private readonly menusStateProvider: MenusStateProvider,
   ) {
-    this.homeStateProvider.setCategoriesMenu(false);
+    this.menusStateProvider.setCategoriesMenu(false);
   }
 
   ngOnInit() {
