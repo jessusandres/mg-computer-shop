@@ -1,0 +1,41 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  pool: {}
+  machineType: E2_MEDIUM
+projectId: $PROJECT_ID
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    automapSubstitutions: true
+    # script: |
+    # docker build -t $_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:latest .
+    args:
+      - build
+      - -t
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest'
+      - --build-arg=NG_APP_NAME=$_NG_APP_NAME
+      - --build-arg=NG_APP_BACKEND_URL=$_NG_APP_BACKEND_URL
+      - '.'
+
+  # Push the image to GCR
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest',
+      ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest'
+      - '--region'
+      - '${_REGION}'
+      - '--allow-unauthenticated'
+      - '--verbosity=debug'
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest
