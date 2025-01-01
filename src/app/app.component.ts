@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { AfterViewInit, Component } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 
 /* Extra */
@@ -16,7 +16,7 @@ import { LocalAuthService } from '@app/services/local-auth.service';
   styleUrl: './app.component.scss',
   providers: [HomeStateProvider],
 })
-export class AppComponent {
+export class AppComponent implements AfterViewInit {
   appName = import.meta.env['NG_APP_NAME'];
   title = 'mg-computer-shop';
 
@@ -25,7 +25,8 @@ export class AppComponent {
     this.localAuthService.fillUser();
   }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
+    console.log('initFlowbite');
     initFlowbite();
   }
 }
