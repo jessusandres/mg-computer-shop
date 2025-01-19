@@ -50,18 +50,19 @@
         </div>
       </div>
       <div class="inline-flex items-center gap-3 lg:gap-4">
-        <button
-          *ngIf="user"
-          id="dropdownUserAvatarButton"
-          data-dropdown-toggle="dropdownAvatar" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-          type="button"
-        >
-          <span class="sr-only">Open user menu</span>
-          <img *ngIf="user?.avatar" class="w-8 h-8 rounded-full" [height]="40" [width]="40" [ngSrc]="user.avatar || ''" alt="user photo">
-          <span *ngIf="!user?.avatar" class="text-white w-8 h-8 rounded-full" style="align-content: center">
-            {{initials}}
-          </span>
-        </button>
+        <div *ngIf="user">
+          <button
+            id="dropdownUserAvatarButton"
+            data-dropdown-toggle="dropdownAvatar" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+            type="button"
+          >
+            <span class="sr-only">Open user menu</span>
+            <img *ngIf="user.avatar" class="w-8 h-8 rounded-full" [height]="40" [width]="40" [ngSrc]="user.avatar" alt="user photo">
+            <span *ngIf="!user.avatar" class="text-white w-8 h-8 rounded-full" style="align-content: center">
+              {{initials}}
+            </span>
+          </button>
+        </div>
 
         <!-- Dropdown menu -->
         <div id="dropdownAvatar" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
@@ -140,7 +141,7 @@
   </div>
   <app-tooltip [tooltip-id]="'cart-tooltip'" [text]="'Carrito de compras'" />
   <app-tooltip [tooltip-id]="'login-tooltip'" [text]="'Iniciar sesión'" />
-  <app-tooltip [tooltip-id]="'email-tooltip'" [text]="user?.email || ''" />
-  <app-tooltip [tooltip-id]="'full-name-tooltip'" [text]="user?.fullName || ''" />
+  <app-tooltip *ngIf="true" [tooltip-id]="'email-tooltip'" [text]="user?.email || 'N/A'" />
+  <app-tooltip *ngIf="true" [tooltip-id]="'full-name-tooltip'" [text]="user?.fullName || 'N/A'" />
 </header>
 
