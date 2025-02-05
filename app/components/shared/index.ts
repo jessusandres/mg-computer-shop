@@ -1,0 +1,9 @@
+export { Header } from './Header';
+export { Sidebar } from './Sidebar';
+export { ModalOverlay } from './ModalOverlay';
+export { WhatsappPopUp } from './WhatsappPopUp';
+export { ProductModal } from './ProductModal';
+export { CartMenu } from './CartMenu';
+export { Footer } from './Footer';
+export { Navbar } from './Navbar';
+export { ProductsCarrousel } from './ProductsCarrousel';

@@ -1,0 +1,1 @@
+export { WhatsappPopUp } from './WhatsappPopUp';

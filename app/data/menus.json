@@ -1,0 +1,30 @@
+[
+  {
+    "link": "shopfront",
+    "name": "Tienda"
+  },
+  {
+    "link": "featured/gamer-combos",
+    "name": "Combo gamer"
+  },
+  {
+    "link": "featured/laptops",
+    "name": "Laptops"
+  },
+  {
+    "link": "featured/printers",
+    "name": "Impresoras"
+  },
+  {
+    "link": "/about-us",
+    "name": "Nosotros"
+  },
+  {
+    "link": "/contact",
+    "name": "Contacto"
+  },
+  {
+    "link": "/faq",
+    "name": "Preguntas"
+  }
+]
