@@ -1,0 +1,21 @@
+.wsp-popup {
+  display: none;
+  opacity: 0;
+  transform: translateY(0);
+  transition-property: display, opacity, transform;
+  transition-duration: .350s;
+  transition-behavior: allow-discrete;
+
+  &.show {
+    display: block !important;
+    opacity: 1;
+  }
+}
+
+
+@starting-style {
+  .wsp-popup.show {
+    opacity: 0.3;
+    transform: translateY(3.5rem);
+  }
+}

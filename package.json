@@ -1,0 +1,71 @@
+{
+  "name": "mg-computer-spa",
+  "private": true,
+  "sideEffects": false,
+  "type": "module",
+  "scripts": {
+    "build": "remix vite:build",
+    "start:dev": "remix vite:dev",
+    "format": "prettier --write \"app/**/*.ts\" \"test/**/*.ts\" --no-error-on-unmatched-pattern",
+    "lint": "eslint --ignore-path .gitignore .",
+    "start": "remix-serve ./build/server/index.js",
+    "typecheck": "tsc",
+    "prepare": "husky",
+    "commit": "cz"
+  },
+  "dependencies": {
+    "@hookform/resolvers": "^3.10.0",
+    "@reduxjs/toolkit": "^2.5.1",
+    "@remix-run/node": "^2.15.3",
+    "@remix-run/react": "^2.15.3",
+    "@remix-run/serve": "^2.15.3",
+    "axios": "^1.7.9",
+    "class-validator": "^0.14.1",
+    "eslint-config-prettier": "^10.0.1",
+    "eslint-plugin-prettier": "^5.2.3",
+    "flowbite-react": "^0.10.2",
+    "isbot": "^4.1.0",
+    "prettier": "^3.4.2",
+    "prettier-eslint": "^16.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-hook-form": "^7.54.2",
+    "react-redux": "^9.2.0",
+    "remix-utils": "^8.1.0",
+    "swiper": "^11.2.2",
+    "yup": "^1.6.1"
+  },
+  "devDependencies": {
+    "@remix-run/dev": "^2.15.3",
+    "@tailwindcss/forms": "^0.5.10",
+    "@tailwindcss/typography": "^0.5.16",
+    "@types/react": "^18.2.20",
+    "@types/react-dom": "^18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "autoprefixer": "^10.4.19",
+    "cz-conventional-changelog": "^3.3.0",
+    "eslint": "^8.38.0",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.28.1",
+    "eslint-plugin-jsx-a11y": "^6.7.1",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "husky": "^9.1.7",
+    "postcss": "^8.4.38",
+    "tailwind-scrollbar": "^4.0.0",
+    "tailwindcss": "^3.4.14",
+    "tailwindcss-animated": "^2.0.0",
+    "typescript": "^5.1.6",
+    "vite": "^5.1.0",
+    "vite-tsconfig-paths": "^4.2.1"
+  },
+  "engines": {
+    "node": ">=20.0.0"
+  },
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  }
+}

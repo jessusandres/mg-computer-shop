@@ -1,0 +1,24 @@
+.navbar-menu {
+  display: none !important;
+  transform: translateY(0);
+  transition-property: display, opacity, transform;
+  transition-duration: .150s;
+  transition-behavior: allow-discrete;
+
+  &.show {
+    display: block !important;;
+    opacity: 1;
+  }
+}
+
+.cg-hidden {
+  display: none;
+}
+
+
+@starting-style {
+  .navbar-menu.show {
+    opacity: 0;
+    transform: translateY(2.5rem);
+  }
+}

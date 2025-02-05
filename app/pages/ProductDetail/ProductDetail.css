@@ -1,0 +1,20 @@
+.item-tab {
+  display: none;
+
+  transform: translateX(0);
+  transition-property: display, opacity, transform;
+  transition-duration: .250s;
+  transition-behavior: allow-discrete;
+
+  &.show {
+    display: block;
+    opacity: 1;
+  }
+}
+
+@starting-style {
+  .item-tab.show {
+    opacity: 0;
+    transform: translateX(-50%);
+  }
+}

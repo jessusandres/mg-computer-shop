@@ -1,0 +1,28 @@
+.product-modal {
+  transform: translateY(0);
+  transition-property: display, opacity, transform;
+  transition-duration: .150s;
+  transition-behavior: allow-discrete;
+
+  opacity: 1;
+}
+
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Hide spin buttons in Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+
+@starting-style {
+  .product-modal {
+    opacity: 0;
+    transform: translateY(50%);
+  }
+}

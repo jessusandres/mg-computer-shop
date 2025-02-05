@@ -1,0 +1,21 @@
+.cart-modal {
+  display: none;
+  opacity: 0;
+  transform: translateX(0);
+  transition-property: display, opacity, transform;
+  transition-duration: .150s;
+  transition-behavior: allow-discrete;
+}
+
+.cart-modal.show {
+  display: block;
+  opacity: 1;
+}
+
+
+@starting-style {
+  .cart-modal.show {
+    opacity: 0;
+    transform: translateX(50%);
+  }
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "symbol": "S/.",
+    "term": "PEN",
+    "exchangeValue": 1
+  },
+  {
+    "symbol": "$",
+    "term": "USD",
+    "exchangeValue": 3.5
+  },
+  {
+    "symbol": "€",
+    "term": "EUR",
+    "exchangeValue": 4
+  }
+]

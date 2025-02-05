@@ -1,0 +1,60 @@
+/*!* You can add global styles to this file, and also import other style files *!*/
+
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&family=Nunito:wght@400;500;600;700;800&family=Poppins:wght@100;300;400;500;600;700;800;900&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+#banners .swiper-button-next,
+#banners .swiper-button-prev {
+  @apply !rounded-full !bg-black/50 !size-10 !text-white backdrop-blur;
+}
+
+#banners .swiper-pagination-bullet {
+  @apply !border-2 !bg-transparent !opacity-100 size-4;
+}
+
+#banners .swiper-pagination-bullet-active {
+  @apply !bg-white size-4;
+}
+
+#banners .swiper-button-next:after,
+#banners .swiper-button-prev:after {
+  @apply !text-base !font-bold;
+}
+
+.navSwiper .swiper-button-prev,
+.navSwiper .swiper-button-next {
+  @apply transition-all duration-300 opacity-0;
+}
+
+.navSwiper .swiper-pagination-bullet-active {
+  @apply !bg-[#333];
+}
+
+.headSwiper:hover .swiper-button-prev,
+.headSwiper:hover .swiper-button-next {
+  @apply !opacity-100;
+}
+
+.swiper-button-next:after,
+.swiper-button-prev:after {
+  @apply text-[32px] font-bold;
+}
+
+.navSwiper .swiper-pagination-bullet-active {
+  @apply !bg-[#333];
+}
+
+[x-cloak] {
+  @apply hidden;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  pointer-events: all;
+  width: 24px;
+  height: 24px;
+  -webkit-appearance: none;
+  /* @apply w-6 h-6 appearance-none pointer-events-auto; */
+}

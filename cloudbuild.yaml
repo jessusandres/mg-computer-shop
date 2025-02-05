@@ -1,0 +1,43 @@
+options:
+  logging: CLOUD_LOGGING_ONLY
+  pool: {}
+  machineType: E2_MEDIUM
+projectId: $PROJECT_ID
+steps:
+  - name: 'gcr.io/cloud-builders/docker'
+    automapSubstitutions: true
+    # script: |
+    # docker build -t $_REGION-docker.pkg.dev/$PROJECT_ID/$_REPO_NAME/$_IMAGE_NAME:latest .
+    args:
+      - build
+      - -t
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest'
+      - --build-arg=APP_NAME=$_APP_NAME
+      - --build-arg=APP_BACKEND_URL=$_APP_BACKEND_URL
+      - --build-arg=APP_LOGOUT_URL=$_APP_LOGOUT_URL
+      - --build-arg=APP_LOGIN_URL=$_APP_LOGIN_URL
+      - '.'
+
+  # Push the image to GCR
+  - name: 'gcr.io/cloud-builders/docker'
+    args:
+      [
+        'push',
+        '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest',
+      ]
+
+  - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+    entrypoint: gcloud
+    args:
+      - 'run'
+      - 'deploy'
+      - '${_SERVICE_NAME}'
+      - '--image'
+      - '${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest'
+      - '--region'
+      - '${_REGION}'
+      - '--allow-unauthenticated'
+      - '--verbosity=debug'
+
+images:
+  - ${_REGION}-docker.pkg.dev/${PROJECT_ID}/${_REPO_NAME}/${_IMAGE_NAME}:latest

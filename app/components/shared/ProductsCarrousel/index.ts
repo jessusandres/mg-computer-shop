@@ -1,0 +1,1 @@
+export { ProductsCarrousel } from './ProductsCarrousel';

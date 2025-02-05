@@ -1,0 +1,22 @@
+.navbar-item {
+  display: none;
+  opacity: 0;
+
+  transition-property: display, opacity, transform;
+  transition-duration: .5s;
+  transition-behavior: allow-discrete;
+  transform: translateX(0);
+
+  &.show {
+    display: block;
+    opacity: 1;
+  }
+}
+
+
+@starting-style {
+  .navbar-item.show {
+    opacity: 0;
+    transform: translateX(-2rem);
+  }
+}

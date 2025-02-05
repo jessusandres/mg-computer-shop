@@ -1,0 +1,267 @@
+[
+  {
+    "id": 1,
+    "name": "CASE HALION STUKA CR11 WHITE, PANEL MESH, X4 FAN RGB",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [
+      {
+        "method": "EFFECTIVE",
+        "amount": 10
+      }
+    ],
+    "sku": "910-005281",
+    "categories": [
+      {
+        "id": 3,
+        "name": "CASES"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-STUKA-CR11-WHITE-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "priceEUR": 62.90,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ],
+    "stock": 10
+  },
+  {
+    "id": 2,
+    "name": "CASE MSI MAG VAMPIRIC 100R, PANEL MESH, X2 FAN 12cm",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [
+      {
+        "method": "CARD",
+        "amount": 5
+      },
+      {
+        "method": "EFFECTIVE",
+        "amount": 5
+      }
+    ],
+    "sku": "910-005281",
+    "categories": [
+      {
+        "id": 3,
+        "name": "CASES"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "priceEUR": 63.90,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      }
+    ],
+    "stock": 4
+  },
+  {
+    "id": 3,
+    "name": "Razer Cobra Ratón Gaming Chroma RGB 8500DPI Negro",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [
+      {
+        "method": "EFFECTIVE",
+        "amount": 12
+      }
+    ],
+    "sku": "910-125281",
+    "categories": [
+      {
+        "id": 1,
+        "name": "MOUSE GAMER"
+      },
+      {
+        "id": 2,
+        "name": "PERIFERICOS"
+      }
+    ],
+    "tags": [
+      {
+        "id": 3,
+        "name": "Periféricos"
+      },
+      {
+        "id": 4,
+        "name": "Mouse gamer"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/RAZER-COBRA-860x860.jpg",
+    "pricePEN": 238.99,
+    "priceUSD": 61.92,
+    "priceEUR": 62.50,
+    "warehouses": [
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ],
+    "stock": 3
+  },
+  {
+    "id": 4,
+    "name": "ASUS TUF Gaming VG249Q1A 23.8″ IPS FullHD 165Hz FreeSync Premium",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [],
+    "sku": "910-005281",
+    "categories": [
+      {
+        "id": 4,
+        "name": "Monitores"
+      }
+    ],
+    "tags": [
+      {
+        "id": 5,
+        "name": "Monitores"
+      },
+      {
+        "id": 6,
+        "name": "Monitor Gaming"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/MO24VG249Q1A-860x860.jpg",
+    "pricePEN": 774.99,
+    "priceUSD": 184.55,
+    "priceEUR": 190.90,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ],
+    "stock": 21
+  },
+  {
+    "id": 5,
+    "name": "CASE HALION TORNADO 04 WHITE, PANEL MESH, X3 FAN ARGB",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [
+      {
+        "method": "EFFECTIVE",
+        "amount": 5
+      }
+    ],
+    "sku": "910-005281",
+    "categories": [
+      {
+        "id": 3,
+        "name": "CASES"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-SIN-FUENTE-TORNADO-04-WHITE-860x860.jpg",
+    "pricePEN": 138.99,
+    "priceUSD": 41.92,
+    "priceEUR": 42.10,
+    "warehouses": [
+      {
+        "id": 2,
+        "name": "Trujillo"
+      },
+      {
+        "id": 3,
+        "name": "Lima"
+      }
+    ],
+    "stock": 14
+  },
+  {
+    "id": 6,
+    "name": "CASE MSI MAG VAMPIRIC 100R, PANEL MESH, X2 FAN 12cm",
+    "description": "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
+    "discounts": [
+      {
+        "method": "EFFECTIVE",
+        "amount": 12
+      }
+    ],
+    "sku": "910-005281",
+    "categories": [
+      {
+        "id": 3,
+        "name": "CASES"
+      }
+    ],
+    "tags": [
+      {
+        "id": 1,
+        "name": "GABINETE/CASE"
+      },
+      {
+        "id": 2,
+        "name": "GABINETE S/FUENTE"
+      }
+    ],
+    "image": "https://gamerbit.pe/wp-content/uploads/2024/01/CASE-GAMER-MSI-MAG-VAMPIRIC-100R-BLACK-SIN-FUENTE-860x860.jpg",
+    "pricePEN": 222.99,
+    "priceUSD": 33.70,
+    "priceEUR": 33.90,
+    "warehouses": [
+      {
+        "id": 1,
+        "name": "Chiclayo"
+      },
+      {
+        "id": 2,
+        "name": "Trujillo"
+      }
+    ],
+    "stock": 17
+  }
+]
